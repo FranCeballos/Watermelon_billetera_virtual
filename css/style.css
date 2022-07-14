@@ -1,0 +1,185 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: DFF6FF;
+}
+
+.main {
+  min-height: 100vh;
+}
+
+.bienvenida {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background-color: #a9ddff;
+  width: 100%;
+  height: 100vh;
+  row-gap: 20px;
+}
+
+.bienvenidaNombre {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.bienvenidaTitulo {
+  font-weight: 500;
+}
+
+.nombreNoIngresado {
+  display: none;
+}
+
+.appGrid {
+  margin: 40px 10%;
+  max-width: 100%;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 4fr 3fr;
+  gap: 10px;
+}
+
+.appGrid div {
+  border: 1px solid black;
+}
+
+.appTituloBox {
+  background-color: #a9ddff;
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.appBalanceBox {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.appNombreBox {
+  background-color: #a9ddff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.appNombreEditarInput {
+  display: none;
+}
+
+.appNombreConfirmarBoton {
+  display: none;
+}
+
+.appIngresarDineroBox {
+  background-color: aliceblue;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.appPagarBox {
+  background-color: #a9ddff;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+
+.appPagarSelector {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+}
+
+.appPagarResetBoton {
+  display: none;
+}
+
+.appPagarDebito {
+  display: none;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  gap: 20px;
+}
+
+.appPagarDebitoBox1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.appPagarDebitoBox2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.appPagarCredito {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.creditoBox {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  gap: 10px;
+}
+
+.appPagarCreditoError {
+  display: none;
+}
+
+.appPagarMensajeConfirmacion {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  padding: 50px;
+}
+
+.appTransferirBox {
+  background-color: aliceblue;
+  grid-column: 1 / 3;
+}
