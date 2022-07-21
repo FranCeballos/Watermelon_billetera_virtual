@@ -176,6 +176,10 @@ document
     sumarYORestarAlBalanceYActualizarHTMLSaldo(montoAIngresar, 0);
     actualizarEnLocalStorageObjetoInfoPersonal();
     inputIngresarDinero.value = "";
+    Toastify({
+      text: `Se ha confirmado el ingreso de $${montoAIngresar}`,
+      duration: 5000,
+    }).showToast();
   });
 
 // Confirmar tarjeta a usar para pagar
@@ -219,9 +223,10 @@ document.querySelector(".appPagarDebitoBoton").addEventListener("click", () => {
   if (comprobarSiElBalanceSeraPositivo(montoAPagar)) {
     sumarYORestarAlBalanceYActualizarHTMLSaldo(0, montoAPagar);
     resetSeccionPagar();
-    mostrarMensajeConfirmacionPago(
-      `Se ha confirmado el pago de $${montoAPagar}`
-    );
+    Toastify({
+      text: `Se ha confirmado el pago de $${montoAPagar}`,
+      duration: 5000,
+    }).showToast();
   } else {
     document.querySelector(
       ".appPagarDebitoMensajeError"
@@ -287,9 +292,10 @@ document
     if (comprobarSiElBalanceSeraPositivo(costoFinal.precioFinal)) {
       sumarYORestarAlBalanceYActualizarHTMLSaldo(0, costoFinal.precioFinal);
       resetSeccionPagar();
-      mostrarMensajeConfirmacionPago(
-        `Se ha confirmado el pago de $${costoFinal.precioFinal}`
-      );
+      Toastify({
+        text: `Se ha confirmado el pago de $${costoFinal.precioFinal}`,
+        duration: 5000,
+      }).showToast();
     } else {
       document.querySelector(".appPagarCreditoError").style.display =
         "inline-block";

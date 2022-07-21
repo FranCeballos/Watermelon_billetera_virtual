@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>JavaScript - Billetera Virtual</title>
-    <link rel="stylesheet" href="/css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
 
   <body>
@@ -24,8 +30,14 @@
         </h1>
         <div class="bienvenidaNombre">
           <p class="bienvenidaNombreMensaje">Ingresá tu nombre:</p>
-          <input type="text" class="bienvenidaNombreIngresar" />
-          <button class="confirmarNombre">Confirmar</button>
+          <input
+            type="text"
+            class="bienvenidaNombreIngresar"
+            placeholder="Ingresá nombre de usuario..."
+          />
+          <button type="button" class="btn btn-light confirmarNombre">
+            Confirmar
+          </button>
         </div>
         <p class="nombreNoIngresado">Nombre no ingresado ❗️</p>
       </section>
@@ -36,47 +48,86 @@
         </div>
 
         <div class="appBalanceBox">
-          <p class="appBalanceTitulo">Saldo</p>
-          <p class="appBalanceNumero">$0</p>
+          <p class="appBalanceTitulo appNombreSubTitulo">Saldo</p>
+          <p class="appBalanceNumero appNombreSubTitulo">$0</p>
         </div>
         <div class="appNombreBox">
-          <button class="appNombreEditarBoton">Editar</button>
-          <input type="text" class="appNombreEditarInput" />
-          <button class="appNombreConfirmarBoton">Confirmar</button>
-          <p class="appNombre">Nombre</p>
+          <button type="button" class="btn btn-light appNombreEditarBoton">
+            Editar
+          </button>
+          <input
+            type="text"
+            class="appNombreEditarInput"
+            placeholder="Nuevo nombre..."
+          />
+          <button type="button" class="btn btn-light appNombreConfirmarBoton">
+            Confirmar
+          </button>
+          <p class="appNombre appNombreSubTitulo">Nombre</p>
         </div>
         <div class="appIngresarDineroBox">
-          <p class="appIngresarDineroTitulo">Ingresar Dinero</p>
-          <input class="appIngresarDineroInput" type="number" />
-          <button class="appIngresarDineroBoton">☑️</button>
+          <p class="appIngresarDineroTitulo appNombreSubTitulo">
+            Ingresar Dinero
+          </p>
+          <input
+            class="appIngresarDineroInput"
+            type="number"
+            placeholder="Monto a ingresar..."
+          />
+          <button type="button" class="btn btn-primary appIngresarDineroBoton">
+            ✓
+          </button>
         </div>
         <div class="appPagarBox">
           <div class="appPagarSelector">
-            <p class="appPagarSelectorTitulo">Pagar</p>
+            <p class="appPagarSelectorTitulo appNombreSubTitulo">Pagar</p>
             <select name="tipo de tarjeta" id="selectorTarjeta">
               <option value="selected">Seleccionar medio de pago</option>
               <option value="debito">Débito</option>
               <option value="credito">Crédito</option>
             </select>
-            <button class="appPagarSelectorTarjetaConfirmarBoton">☑️</button>
-            <button class="appPagarResetBoton">Reset</button>
+            <button
+              type="button"
+              class="btn btn-primary appPagarSelectorTarjetaConfirmarBoton"
+            >
+              ✓
+            </button>
+            <button type="button" class="btn btn-light appPagarResetBoton">
+              Reset
+            </button>
           </div>
           <div class="appPagarDebito">
             <div class="appPagarDebitoBox1">
-              <p class="appPagarDebitoText1">Monto a pagar con Débito:</p>
-              <input type="number" class="appPagarDebitoInput" />
+              <p class="appPagarDebitoText1 appNombreSubTitulo">
+                Monto a pagar con Débito:
+              </p>
+              <input
+                type="number"
+                class="appPagarDebitoInput"
+                placeholder="Monto a pagar con débito..."
+              />
             </div>
             <p class="appPagarDebitoResumen"></p>
             <p class="appPagarDebitoMensajeError"></p>
             <div class="appPagarDebitoBox2">
-              <p class="appPagarDebitoText2">Confirmar pago:</p>
-              <button class="appPagarDebitoBoton">☑️</button>
+              <p class="appPagarDebitoText2 appNombreSubTitulo">
+                Confirmar pago:
+              </p>
+              <button type="button" class="btn btn-primary appPagarDebitoBoton">
+                ✓
+              </button>
             </div>
           </div>
           <div class="appPagarCredito">
             <div class="appPagarCreditoBox1 creditoBox">
-              <p class="appPagarCreditoTitulo">Monto a pagar con Crédito:</p>
-              <input type="number" class="appPagarCreditoInput" />
+              <p class="appPagarCreditoTitulo appNombreSubTitulo">
+                Monto a pagar con Crédito:
+              </p>
+              <input
+                type="number"
+                class="appPagarCreditoInput"
+                placeholder="Monto a pagar con crédito..."
+              />
             </div>
             <div class="appPagarCreditoBox2 creditoBox">
               <select name="selector de cuotas" id="selectorCuotas">
@@ -85,12 +136,19 @@
                 <option value="6">6 Cuotas - 15% Interés</option>
                 <option value="12">12 Cuotas - 30% Interés</option>
               </select>
-              <p>Confirmar pago:</p>
-              <button class="appPagarCreditoBoton">☑️</button>
+              <p class="appNombreSubTitulo">Confirmar pago:</p>
+              <button
+                type="button"
+                class="btn btn-primary appPagarCreditoBoton"
+              >
+                ✓
+              </button>
             </div>
             <div class="appPagarCreditoBox3 creditoBox">
-              <p class="appPagarCreditoResumen">Resumen</p>
-              <p class="appPagarCreditoError">Saldo Insuficiente 🚫</p>
+              <p class="appPagarCreditoResumen appNombreSubTitulo">Resumen</p>
+              <p class="appPagarCreditoError appNombreSubTitulo">
+                Saldo Insuficiente 🚫
+              </p>
             </div>
           </div>
           <p class="appPagarMensajeConfirmacion"></p>
@@ -99,6 +157,11 @@
       </section>
     </main>
 
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <script src="/js/script.js"></script>
   </body>
 </html>
