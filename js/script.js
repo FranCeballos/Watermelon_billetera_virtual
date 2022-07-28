@@ -5,17 +5,25 @@ console.log(infoPersonalEnLS);
 let infoPersonal = {
   balance: 0,
   logueado: false,
+  actividad: [],
 };
 
 infoPersonalEnLS && (infoPersonal = infoPersonalEnLS);
 
-actualizarHTMLSaldoYNombre();
+const listaActividad = document.querySelector(".appActividadLista");
+
+actualizarHTMLSaldoNombreYActividad();
 
 console.log(infoPersonal);
 
 const actualizarEnLocalStorageObjetoInfoPersonal = function () {
   let infoPersonalEnJSON = JSON.stringify(infoPersonal);
   localStorage.setItem("infoPersonal", infoPersonalEnJSON);
+};
+
+const sumarActividadAlArray = function (mensaje) {
+  infoPersonal.actividad.push(mensaje);
+  actualizarEnLocalStorageObjetoInfoPersonal();
 };
 
 // Devuelve un objeto con cuota y precio final.
@@ -51,16 +59,25 @@ const comprobarSiElBalanceSeraPositivo = function (precio) {
   return estadoBalance;
 };
 
-function actualizarHTMLSaldoYNombre() {
+function actualizarHTMLSaldoNombreYActividad() {
   document.querySelector(
     ".appBalanceNumero"
   ).textContent = `$ ${infoPersonal.balance}`;
   document.querySelector(".appNombre").textContent = infoPersonal.nombre;
+
+  listaActividad.innerHTML = "";
+
+  infoPersonal.actividad.forEach(function (elemento) {
+    const li = document.createElement("li");
+    const texto = document.createTextNode(elemento);
+    li.appendChild(texto);
+    listaActividad.prepend(li);
+  });
 }
 
 const sumarYORestarAlBalanceYActualizarHTMLSaldo = function (sumar, restar) {
   infoPersonal.balance = infoPersonal.balance + sumar - restar;
-  actualizarHTMLSaldoYNombre();
+  actualizarHTMLSaldoNombreYActividad();
   actualizarEnLocalStorageObjetoInfoPersonal();
   console.log(infoPersonal);
 };
@@ -158,7 +175,7 @@ botonEditarNombre.addEventListener("click", () => {
 botonConfirmarNombre.addEventListener("click", () => {
   infoPersonal.nombre = inputEditarNombre.value;
   actualizarEnLocalStorageObjetoInfoPersonal();
-  actualizarHTMLSaldoYNombre();
+  actualizarHTMLSaldoNombreYActividad();
   botonConfirmarNombre.style.display = "none";
   inputEditarNombre.style.display = "none";
   inputEditarNombre.value = "";
@@ -176,10 +193,15 @@ document
     sumarYORestarAlBalanceYActualizarHTMLSaldo(montoAIngresar, 0);
     actualizarEnLocalStorageObjetoInfoPersonal();
     inputIngresarDinero.value = "";
-    Toastify({
-      text: `Se ha confirmado el ingreso de $${montoAIngresar}`,
-      duration: 5000,
-    }).showToast();
+
+    if (montoAIngresar > 0) {
+      Toastify({
+        text: `Se ha confirmado el ingreso de $${montoAIngresar}`,
+        duration: 5000,
+      }).showToast();
+      sumarActividadAlArray(`Ingreso de $${montoAIngresar}`);
+      actualizarHTMLSaldoNombreYActividad();
+    }
   });
 
 // Confirmar tarjeta a usar para pagar
@@ -203,12 +225,21 @@ document
   });
 
 const inputPagarDebito = document.querySelector(".appPagarDebitoInput");
+const eleSaldoInsuficienteDebito = document.querySelector(
+  ".appPagarDebitoMensajeError"
+);
 
 // Actualizar string resumen pago con débito
 inputPagarDebito.addEventListener("input", (e) => {
   document.querySelector(
     ".appPagarDebitoResumen"
   ).textContent = `El total a pagar con tarjeta de débito es: $${e.target.value}`;
+
+  if (!comprobarSiElBalanceSeraPositivo(e.target.value)) {
+    eleSaldoInsuficienteDebito.textContent = `Saldo insuficiente 🚫`;
+  } else {
+    eleSaldoInsuficienteDebito.textContent = "";
+  }
 });
 
 // Confirmar pago con débito
@@ -218,21 +249,21 @@ document.querySelector(".appPagarDebitoBoton").addEventListener("click", () => {
   console.log(montoAPagar, comprobarSiElBalanceSeraPositivo(montoAPagar));
 
   if (comprobarSiElBalanceSeraPositivo(montoAPagar)) {
-    sumarYORestarAlBalanceYActualizarHTMLSaldo(0, montoAPagar);
     resetSeccionPagar();
     Toastify({
       text: `Se ha confirmado el pago de $${montoAPagar}`,
       duration: 5000,
     }).showToast();
-  } else {
-    document.querySelector(
-      ".appPagarDebitoMensajeError"
-    ).textContent = `Saldo insuficiente 🚫`;
+    sumarActividadAlArray(`Pago de $${montoAPagar} con débito`);
+    sumarYORestarAlBalanceYActualizarHTMLSaldo(0, montoAPagar);
   }
 });
 
 const selectorDeCuotas = document.querySelector("#selectorCuotas");
 const inputPagarCredito = document.querySelector(".appPagarCreditoInput");
+const eleSaldoInsuficienteCredito = document.querySelector(
+  ".appPagarCreditoError"
+);
 
 // Actualizar string resumen pago con crédito
 inputPagarCredito.addEventListener("input", (e) => {
@@ -250,6 +281,12 @@ inputPagarCredito.addEventListener("input", (e) => {
     valorCuotaYPrecioFinal.valorCuota.toFixed(2),
     valorCuotaYPrecioFinal.precioFinal.toFixed(2)
   );
+
+  if (!comprobarSiElBalanceSeraPositivo(valorCuotaYPrecioFinal.precioFinal)) {
+    eleSaldoInsuficienteCredito.style.display = "inline-block";
+  } else {
+    eleSaldoInsuficienteCredito.style.display = "none";
+  }
 });
 
 selectorDeCuotas.addEventListener("change", (e) => {
@@ -287,15 +324,21 @@ document
     console.log(costoFinal);
 
     if (comprobarSiElBalanceSeraPositivo(costoFinal.precioFinal)) {
-      sumarYORestarAlBalanceYActualizarHTMLSaldo(0, costoFinal.precioFinal);
       resetSeccionPagar();
       Toastify({
-        text: `Se ha confirmado el pago de $${costoFinal.precioFinal}`,
+        text: `Se ha confirmado el pago de $${costoFinal.precioFinal.toFixed(
+          2
+        )}`,
         duration: 5000,
       }).showToast();
-    } else {
-      document.querySelector(".appPagarCreditoError").style.display =
-        "inline-block";
+      sumarActividadAlArray(
+        `Pago de $${costoFinal.precioFinal.toFixed(
+          2
+        )} en ${valorSelectorCuotas} cuota/s de $${costoFinal.valorCuota.toFixed(
+          2
+        )}`
+      );
+      sumarYORestarAlBalanceYActualizarHTMLSaldo(0, costoFinal.precioFinal);
     }
   });
 
@@ -317,9 +360,9 @@ fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
     ).textContent = `$ ${data[1].casa.venta}`;
   });
 
-fetch("https://ws.smn.gob.ar/map_items/weather")
+/* fetch("https://ws.smn.gob.ar/map_items/weather")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
     console.log(data[140].weather);
-  });
+  }); */

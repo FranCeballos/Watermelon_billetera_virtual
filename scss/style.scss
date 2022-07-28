@@ -217,9 +217,26 @@ a:hover {
   }
 
   &Actividad {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     background-color: #393e46;
     grid-column: 1 / 2;
+    padding: 30px;
+    margin-bottom: 0;
+    max-height: 220px;
+    gap: 10px;
+
+    &Lista {
+      margin-bottom: 0px;
+      overflow: scroll;
+    }
+
+    &Lista li {
+      color: #00adb5;
+      list-style: none;
+      margin-bottom: 10px;
+    }
   }
 
   &Cotizacion {
