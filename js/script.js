@@ -186,9 +186,6 @@ document
 document
   .querySelector(".appPagarSelectorTarjetaConfirmarBoton")
   .addEventListener("click", () => {
-    document.querySelector(".appPagarMensajeConfirmacion").style.display =
-      "none";
-
     let valorSelector = selectorDeTarjeta.value;
 
     if (valorSelector === "debito") {
@@ -250,8 +247,8 @@ inputPagarCredito.addEventListener("input", (e) => {
 
   cambiarStringResumenPagoConCredito(
     valorSelectorCuota,
-    valorCuotaYPrecioFinal.valorCuota,
-    valorCuotaYPrecioFinal.precioFinal
+    valorCuotaYPrecioFinal.valorCuota.toFixed(2),
+    valorCuotaYPrecioFinal.precioFinal.toFixed(2)
   );
 });
 
@@ -300,4 +297,29 @@ document
       document.querySelector(".appPagarCreditoError").style.display =
         "inline-block";
     }
+  });
+
+fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    document.querySelector(
+      ".compraDolarOficial"
+    ).textContent = `$ ${data[0].casa.compra}`;
+    document.querySelector(
+      ".ventaDolarOficial"
+    ).textContent = `$ ${data[0].casa.venta}`;
+    document.querySelector(
+      ".compraDolarBlue"
+    ).textContent = `$ ${data[1].casa.compra}`;
+    document.querySelector(
+      ".ventaDolarBlue"
+    ).textContent = `$ ${data[1].casa.venta}`;
+  });
+
+fetch("https://ws.smn.gob.ar/map_items/weather")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+    console.log(data[140].weather);
   });

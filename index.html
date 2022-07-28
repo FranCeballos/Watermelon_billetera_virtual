@@ -24,18 +24,22 @@
     <header></header>
 
     <main class="main">
+      <!-- Bienvenida (login) -->
       <section class="bienvenida">
         <h1 class="bienvenidaTitulo">
           ¡Hola! Bienvenido/a a tu billetera de confianza.
         </h1>
         <div class="bienvenidaNombre">
-          <p class="bienvenidaNombreMensaje">Ingresá tu nombre:</p>
-          <input
-            type="text"
-            class="bienvenidaNombreIngresar"
-            placeholder="Ingresá nombre de usuario..."
-          />
-          <button type="button" class="btn btn-light confirmarNombre">
+          <div class="input-group flex-nowrap">
+            <input
+              type="text"
+              class="form-control bienvenidaNombreIngresar"
+              placeholder="Nombre de Usuario"
+              aria-label="Nombre de Usuario"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <button type="button" class="btn btn-light btn-sm confirmarNombre">
             Confirmar
           </button>
         </div>
@@ -43,107 +47,161 @@
       </section>
 
       <section class="appGrid">
+        <!-- Titulo App -->
         <div class="appTituloBox">
           <h1 class="appTitulo">Billetera Virtual</h1>
         </div>
 
+        <!-- Saldo -->
         <div class="appBalanceBox">
           <p class="appBalanceTitulo appNombreSubTitulo">Saldo</p>
           <p class="appBalanceNumero appNombreSubTitulo">$0</p>
         </div>
+
+        <!-- Nombre de Usuario -->
         <div class="appNombreBox">
-          <button type="button" class="btn btn-light appNombreEditarBoton">
+          <button
+            type="button"
+            class="btn btn-light btn-sm appNombreEditarBoton"
+          >
             Editar
           </button>
-          <input
-            type="text"
-            class="appNombreEditarInput"
-            placeholder="Nuevo nombre..."
-          />
-          <button type="button" class="btn btn-light appNombreConfirmarBoton">
-            Confirmar
-          </button>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control input-group-sm appNombreEditarInput"
+              placeholder="Nuevo nombre"
+              aria-label="Nuevo nombre"
+              aria-describedby="button-addon2"
+            />
+            <button
+              class="btn btn-sm btn-secondary appNombreConfirmarBoton"
+              type="button"
+              id="button-addon2"
+            >
+              Confirmar
+            </button>
+          </div>
           <p class="appNombre appNombreSubTitulo">Nombre</p>
         </div>
+
+        <!-- Ingresar Dinero -->
         <div class="appIngresarDineroBox">
           <p class="appIngresarDineroTitulo appNombreSubTitulo">
             Ingresar Dinero
           </p>
-          <input
-            class="appIngresarDineroInput"
-            type="number"
-            placeholder="Monto a ingresar..."
-          />
-          <button type="button" class="btn btn-primary appIngresarDineroBoton">
-            ✓
-          </button>
+          <div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">$</span>
+              <input
+                type="number"
+                class="form-control input-group-sm appIngresarDineroInput"
+                placeholder="Monto a ingresar"
+                aria-label="Monto a ingresar"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+          </div>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm appIngresarDineroBoton"
+            >
+              Confirmar ingreso ✓
+            </button>
+          </div>
+
+
         </div>
+
+        <!-- Pagar -->
         <div class="appPagarBox">
+          <!-- Seleccionar tarjeta -->
           <div class="appPagarSelector">
             <p class="appPagarSelectorTitulo appNombreSubTitulo">Pagar</p>
-            <select name="tipo de tarjeta" id="selectorTarjeta">
+            <select
+              class="form-select form-select-sm"
+              name="tipo de tarjeta"
+              id="selectorTarjeta"
+            >
               <option value="selected">Seleccionar medio de pago</option>
               <option value="debito">Débito</option>
               <option value="credito">Crédito</option>
             </select>
             <button
               type="button"
-              class="btn btn-primary appPagarSelectorTarjetaConfirmarBoton"
+              class="btn btn-primary btn-sm appPagarSelectorTarjetaConfirmarBoton"
             >
               ✓
             </button>
-            <button type="button" class="btn btn-light appPagarResetBoton">
+            <button
+              type="button"
+              class="btn btn-light btn-sm appPagarResetBoton"
+            >
               Reset
             </button>
           </div>
+
+          <!-- Pagar con Débito -->
           <div class="appPagarDebito">
             <div class="appPagarDebitoBox1">
-              <p class="appPagarDebitoText1 appNombreSubTitulo">
-                Monto a pagar con Débito:
-              </p>
-              <input
-                type="number"
-                class="appPagarDebitoInput"
-                placeholder="Monto a pagar con débito..."
-              />
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">$</span>
+                <input
+                  type="number"
+                  class="form-control input-group-sm appPagarDebitoInput"
+                  placeholder="Monto a pagar con débito"
+                  aria-label="Monto a pagar con débito"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
             </div>
             <p class="appPagarDebitoResumen"></p>
             <p class="appPagarDebitoMensajeError"></p>
             <div class="appPagarDebitoBox2">
-              <p class="appPagarDebitoText2 appNombreSubTitulo">
-                Confirmar pago:
-              </p>
-              <button type="button" class="btn btn-primary appPagarDebitoBoton">
-                ✓
+              <button
+                type="button"
+                class="btn btn-primary btn-sm appPagarDebitoBoton"
+              >
+                Confirmar pago ✓
               </button>
             </div>
           </div>
+
+          <!-- Pagar con Crédito -->
           <div class="appPagarCredito">
+            <!-- Ingresar monto -->
             <div class="appPagarCreditoBox1 creditoBox">
-              <p class="appPagarCreditoTitulo appNombreSubTitulo">
-                Monto a pagar con Crédito:
-              </p>
-              <input
-                type="number"
-                class="appPagarCreditoInput"
-                placeholder="Monto a pagar con crédito..."
-              />
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">$</span>
+                <input
+                  type="number"
+                  class="form-control input-group-sm appPagarCreditoInput"
+                  placeholder="Monto a pagar con crédito"
+                  aria-label="Monto a pagar con crédito"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
             </div>
+            <!-- Selector cuotas -->
             <div class="appPagarCreditoBox2 creditoBox">
-              <select name="selector de cuotas" id="selectorCuotas">
+              <select
+                name="selector de cuotas"
+                id="selectorCuotas"
+                class="form-select"
+              >
                 <option value="1">1 Cuota - 5% Interés</option>
                 <option value="3">3 Cuotas - 10% Interés</option>
                 <option value="6">6 Cuotas - 15% Interés</option>
                 <option value="12">12 Cuotas - 30% Interés</option>
               </select>
-              <p class="appNombreSubTitulo">Confirmar pago:</p>
               <button
                 type="button"
-                class="btn btn-primary appPagarCreditoBoton"
+                class="btn btn-primary btn-sm appPagarCreditoBoton"
               >
-                ✓
+                Confirmar pago ✓
               </button>
             </div>
+            <!-- Resumen y Saldo Insuficiente -->
             <div class="appPagarCreditoBox3 creditoBox">
               <p class="appPagarCreditoResumen appNombreSubTitulo">Resumen</p>
               <p class="appPagarCreditoError appNombreSubTitulo">
@@ -151,9 +209,32 @@
               </p>
             </div>
           </div>
-          <p class="appPagarMensajeConfirmacion"></p>
         </div>
-        <div class="appTransferirBox"></div>
+        <div class="appActividad"></div>
+        <div class="appCotizacion">
+          <p class="appCotizacionTitulo">Cotización Dolar</p>
+          <table class="appCotizacionTabla">
+            <tr>
+              <th></th>
+              <th class="appCotizacionSubTitulo">Compra</th>
+              <th class="appCotizacionSubTitulo">Venta</th>
+            </tr>
+            <tr>
+              <td class="appCotizacionSubTitulo">Dolar Oficial</td>
+              <td class="compraDolarOficial appCotizacionNumero"></td>
+              <td class="ventaDolarOficial appCotizacionNumero"></td>
+            </tr>
+            <tr>
+              <td class="appCotizacionSubTitulo">Dolar Blue</td>
+              <td class="compraDolarBlue appCotizacionNumero"></td>
+              <td class="ventaDolarBlue appCotizacionNumero"></td>
+            </tr>
+          </table>
+          <p class="appCotizacionFuente">
+            Fuente:
+            <a target="_blank" href="https://www.dolarsi.com/">DolarSi</a>
+          </p>
+        </div>
       </section>
     </main>
 
