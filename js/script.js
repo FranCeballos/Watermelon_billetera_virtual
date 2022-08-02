@@ -6,6 +6,7 @@ let infoPersonal = {
   balance: 0,
   logueado: false,
   actividad: [],
+  contactos: [],
 };
 
 infoPersonalEnLS && (infoPersonal = infoPersonalEnLS);
@@ -75,6 +76,21 @@ function actualizarHTMLSaldoNombreYActividad() {
   });
 }
 
+function borrarOpcionesSelectContactos() {
+  document.querySelector(
+    "#selectContactos"
+  ).innerHTML = `<option value="0" selected>Seleccioná a quién transferir</option>`;
+}
+
+function actualizarSelectContactos() {
+  for (i = 0; i < infoPersonal.contactos.length; i++) {
+    let opcion = document.createElement("option");
+    opcion.value = infoPersonal.contactos[i];
+    opcion.innerHTML = infoPersonal.contactos[i];
+    selectContacto.appendChild(opcion);
+  }
+}
+
 const sumarYORestarAlBalanceYActualizarHTMLSaldo = function (sumar, restar) {
   infoPersonal.balance = infoPersonal.balance + sumar - restar;
   actualizarHTMLSaldoNombreYActividad();
@@ -133,6 +149,8 @@ const mostrarMensajeConfirmacionPago = function (string) {
 
 const seccionBienvenida = document.querySelector(".bienvenida");
 const seccionApp = document.querySelector(".appGrid");
+const botonBorrarDatos = document.querySelector(".appResetBoton");
+const inputNombre = document.querySelector(".bienvenidaNombreIngresar");
 
 if (infoPersonal.logueado) {
   seccionBienvenida.style.display = "none";
@@ -144,9 +162,7 @@ if (infoPersonal.logueado) {
 
 // Confirmar nombre de usuario en bienvenida
 document.querySelector(".confirmarNombre").addEventListener("click", () => {
-  let nombreIngresado = document.querySelector(
-    ".bienvenidaNombreIngresar"
-  ).value;
+  let nombreIngresado = inputNombre.value;
   console.log(nombreIngresado);
   if (nombreIngresado !== "") {
     infoPersonal.nombre = nombreIngresado;
@@ -342,27 +358,196 @@ document
     }
   });
 
-fetch("https://www.dolarsi.com/api/api.php?type=valoresprincipales")
+// API Valor del Dolar
+fetch("https://api.bluelytics.com.ar/v2/latest")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
     document.querySelector(
       ".compraDolarOficial"
-    ).textContent = `$ ${data[0].casa.compra}`;
+    ).textContent = `$ ${data.oficial.value_buy}`;
     document.querySelector(
       ".ventaDolarOficial"
-    ).textContent = `$ ${data[0].casa.venta}`;
+    ).textContent = `$ ${data.oficial.value_sell}`;
     document.querySelector(
       ".compraDolarBlue"
-    ).textContent = `$ ${data[1].casa.compra}`;
+    ).textContent = `$ ${data.blue.value_buy}`;
     document.querySelector(
       ".ventaDolarBlue"
-    ).textContent = `$ ${data[1].casa.venta}`;
+    ).textContent = `$ ${data.blue.value_sell}`;
   });
 
-/* fetch("https://ws.smn.gob.ar/map_items/weather")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-    console.log(data[140].weather);
-  }); */
+const botonResetTransferir = document.querySelector(".appTransferirResetBoton");
+const botonTransferirEleccion = document.querySelector(
+  ".appTransferirElegirEleccionBoton"
+);
+const botonAgendarEleccion = document.querySelector(
+  ".appTransferirAgendarEleccionBoton"
+);
+const seccionTransferirEleccion = document.querySelector(
+  ".appTransferirEleccion"
+);
+const seccionTransferirAgendar = document.querySelector(
+  ".appTransferirAgendar"
+);
+const inputNombreAgendar = document.querySelector(".appTransferirAgendarInput");
+const botonConfirmarAgendar = document.querySelector(
+  ".appTransferirAgendarConfirmarBoton"
+);
+const botonBorrarContactos = document.querySelector(
+  ".appTransferirBorrarContactosBoton"
+);
+const seccionTransferirRealizar = document.querySelector(
+  ".appTransferirRealizar"
+);
+const selectContacto = document.querySelector("#selectContactos");
+const inputMontoATransferir = document.querySelector(
+  ".appTransferirMontoInput"
+);
+const botonResetCaptcha = document.querySelector(
+  ".appTransferirBotonReiniciarCaptcha"
+);
+const inputCodigoCaptcha = document.querySelector(
+  ".appTransferirInputCodigoCaptcha"
+);
+const seccionTransferirCaptcha = document.querySelector(
+  ".appTransferirRealizarBox2"
+);
+const mensajeErrorCaptcha = document.querySelector(
+  ".appTransferirMensajeCaptchaError"
+);
+const mensajeSaldoInsuficienteTransferir = document.querySelector(
+  ".appTransferirMensajeSaldoInsuficiente"
+);
+
+function reiniciarSeccionTransferir() {
+  botonResetTransferir.style.display = "none";
+  seccionTransferirEleccion.style.display = "flex";
+  seccionTransferirAgendar.style.display = "none";
+  seccionTransferirRealizar.style.display = "none";
+  seccionTransferirCaptcha.style.display = "none";
+  mensajeErrorCaptcha.style.display = "none";
+  inputNombreAgendar.value = "";
+  selectContacto.value = "0";
+  inputMontoATransferir.value = "";
+  inputCodigoCaptcha.value = "";
+  borrarOpcionesSelectContactos();
+}
+
+botonResetTransferir.addEventListener("click", reiniciarSeccionTransferir);
+
+botonTransferirEleccion.addEventListener("click", function () {
+  botonResetTransferir.style.display = "inline-block";
+  seccionTransferirEleccion.style.display = "none";
+  seccionTransferirAgendar.style.display = "none";
+  seccionTransferirRealizar.style.display = "flex";
+  seccionTransferirCaptcha.style.display = "none";
+  actualizarSelectContactos();
+});
+
+botonAgendarEleccion.addEventListener("click", function () {
+  botonResetTransferir.style.display = "inline-block";
+  seccionTransferirEleccion.style.display = "none";
+  seccionTransferirAgendar.style.display = "flex";
+  seccionTransferirRealizar.style.display = "none";
+});
+
+botonBorrarContactos.addEventListener("click", function () {
+  infoPersonal.contactos = [];
+  actualizarEnLocalStorageObjetoInfoPersonal();
+  Toastify({
+    text: `Se han borrado todos los contactos`,
+    duration: 5000,
+  }).showToast();
+  console.log(infoPersonal);
+});
+
+botonConfirmarAgendar.addEventListener("click", function () {
+  let nombreAAgendar = inputNombreAgendar.value;
+
+  if (nombreAAgendar !== "") {
+    infoPersonal.contactos.push(nombreAAgendar);
+    Toastify({
+      text: `Se ha agendado a ${nombreAAgendar}`,
+      duration: 5000,
+    }).showToast();
+    actualizarEnLocalStorageObjetoInfoPersonal();
+    console.log(infoPersonal);
+    inputNombreAgendar.value = "";
+  }
+});
+
+function generarNumero6DigitosAlAzar() {
+  let numeroCaptcha = "";
+  for (i = 1; i <= 6; i++) {
+    numeroCaptcha += String(Math.round(Math.random() * 9));
+  }
+  infoPersonal.numeroCaptcha = numeroCaptcha;
+  actualizarEnLocalStorageObjetoInfoPersonal();
+  document.querySelector(".appTransferirCodigo").textContent = numeroCaptcha;
+  return numeroCaptcha;
+}
+
+selectContacto.addEventListener("change", function () {
+  let contactoSeleccionado = selectContacto.value;
+  if (contactoSeleccionado === "0") {
+    seccionTransferirCaptcha.style.display = "none";
+  } else {
+    seccionTransferirCaptcha.style.display = "flex";
+  }
+
+  generarNumero6DigitosAlAzar();
+});
+
+botonResetCaptcha.addEventListener("click", generarNumero6DigitosAlAzar);
+
+document
+  .querySelector(".appTransferirBotonConfirmarTrasferencia")
+  .addEventListener("click", function () {
+    let montoATransferir = Number(inputMontoATransferir.value);
+    let contactoSeleccionado = selectContacto.value;
+    console.log(montoATransferir);
+
+    if (
+      comprobarSiElBalanceSeraPositivo(montoATransferir) &&
+      inputCodigoCaptcha.value === infoPersonal.numeroCaptcha
+    ) {
+      reiniciarSeccionTransferir();
+      Toastify({
+        text: `Se han transferido $${montoATransferir} a ${contactoSeleccionado}`,
+        duration: 5000,
+      }).showToast();
+      sumarActividadAlArray(
+        `Transferencia de $${montoATransferir} a ${contactoSeleccionado}`
+      );
+      sumarYORestarAlBalanceYActualizarHTMLSaldo(0, montoATransferir);
+    } else if (inputCodigoCaptcha.value !== infoPersonal.numeroCaptcha) {
+      mensajeErrorCaptcha.style.display = "inline-block";
+      inputCodigoCaptcha.value = "";
+    }
+
+    generarNumero6DigitosAlAzar();
+  });
+
+inputMontoATransferir.addEventListener("input", function (e) {
+  if (comprobarSiElBalanceSeraPositivo(e.target.value)) {
+    mensajeSaldoInsuficienteTransferir.style.display = "none";
+  } else {
+    mensajeSaldoInsuficienteTransferir.style.display = "inline-block";
+  }
+});
+
+botonBorrarDatos.addEventListener("click", function () {
+  localStorage.clear();
+  infoPersonal.balance = 0;
+  infoPersonal.actividad = [];
+  infoPersonal.contactos = [];
+  infoPersonal.logueado = false;
+  infoPersonal.nombre = "";
+  seccionApp.style.display = "none";
+  seccionBienvenida.style.display = "flex";
+  inputNombre.value = "";
+  console.log(infoPersonal);
+  actualizarHTMLSaldoNombreYActividad();
+  reiniciarSeccionTransferir();
+});

@@ -46,10 +46,16 @@
         <p class="nombreNoIngresado">Nombre no ingresado ❗️</p>
       </section>
 
+      
       <section class="appGrid">
         <!-- Titulo App -->
         <div class="appTituloBox">
           <h1 class="appTitulo">Billetera Virtual</h1>
+          <button type="button"
+              class="btn btn-light btn-sm appResetBoton"
+            >
+              Borrar Datos
+            </button>
         </div>
 
         <!-- Saldo -->
@@ -137,7 +143,7 @@
               type="button"
               class="btn btn-light btn-sm appPagarResetBoton"
             >
-              Reset
+              Atrás
             </button>
           </div>
 
@@ -240,8 +246,78 @@
           </table>
           <p class="appCotizacionFuente">
             Fuente:
-            <a target="_blank" href="https://www.dolarsi.com/">DolarSi</a>
+            <a target="_blank" href="https://bluelytics.com.ar/#!/">BlueLytics</a>
           </p>
+        </div>
+
+        <!-- Sección Transferencias -->
+        <div class="appTransferir">
+          <div class="appTransferirHeader">
+            <p class="appTransferirTitulo">Transferir a Contactos</p>
+            <button class="btn btn-light btn-sm appTransferirResetBoton">Atrás</button>
+          </div>
+
+          <!-- Elejir Transferir o Agendar -->
+          <div class="appTransferirEleccion">
+            <button class="btn btn-light appTransferirElegirEleccionBoton">Transferir</button>
+            <button class="btn btn-light appTransferirAgendarEleccionBoton">Agendar Contacto</button>
+          </div>
+
+          <!-- Agendar Contacto -->
+          <div class="input-group appTransferirAgendar">
+              <input
+                type="text"
+                class="form-control input-group-sm appTransferirAgendarInput"
+                placeholder="Nombre a agendar"
+                aria-label="Nombre a agendar"
+                aria-describedby="button-addon2"
+              />
+              <button
+                class="btn btn-sm btn-secondary appTransferirAgendarConfirmarBoton"
+                type="button"
+                id="button-addon2"
+              >
+                Agendar
+              </button>
+              <button
+                class="btn btn-sm btn-dark appTransferirBorrarContactosBoton"
+                type="button"
+              >
+                Borrar todos los contactos
+              </button>
+          </div>
+
+          <!-- Realizar Transferencia -->
+          <div class=" appTransferirRealizar">
+
+            <!-- Elegir Contacto y Monto -->
+            <div class=" input-group input-group-sm appTransferirRealizarBox1">
+              <label class="input-group-text" for="selectContactos">Contactos</label>
+              <select name="selecionar contacto" id="selectContactos" class="form-select">
+                <option value="0" selected>Seleccioná a quién transferir</option>
+              </select>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
+                <input type="number" class="form-control appTransferirMontoInput"
+                placeholder="Monto a transferir" aria-label="Monto a transferir" aria-describedby="Monto a transferir">
+              </div>
+              <p class="appTransferirMensajeSaldoInsuficiente">Saldo insuficiente ❗️</p>
+            </div>
+
+            <!-- Capcha y Confirmación -->
+            <div class="appTransferirRealizarBox2">
+              <div class="appTransferirCaptcha">
+                <p class="appTransferirCodigo">8767</p>
+                <button type="button" class="btn btn-light btn-sm appTransferirBotonReiniciarCaptcha">🔄</button>
+                <p class="appTransferirMensajeCaptchaError">El código no coincide ❗️ </p>
+              </div>
+              <div class="input-group input-group-sm">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Ingresá Código del Captcha</span>
+                <input type="number" maxlength="6" class="form-control appTransferirInputCodigoCaptcha" aria-label="Introducí el Código" aria-describedby="Introducir Codigo">
+              </div>                
+              <button type="button" class="btn btn-primary btn-sm appTransferirBotonConfirmarTrasferencia">Confirmar Transferencia ✓</button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
