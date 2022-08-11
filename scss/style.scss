@@ -29,14 +29,13 @@ a:hover {
 
 .bienvenida {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  padding: 50px;
+  padding: 100px;
   background-color: #222831;
   width: 100%;
   height: 100vh;
-  row-gap: 20px;
 
   &Nombre {
     display: flex;
@@ -62,12 +61,18 @@ a:hover {
     max-width: 100%;
     display: none;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 4fr 3fr 4fr;
+    grid-template-rows: 1.25fr 1fr 4fr 3fr 4fr;
     gap: 10px;
   }
 
   &Grid div {
     border-radius: 30px;
+  }
+
+  &Logo {
+    width: 50px;
+    height: 50px;
+    transform: rotateZ(30deg);
   }
 
   &ResetBoton {
@@ -79,7 +84,7 @@ a:hover {
   &Titulo {
     color: #00adb5;
     margin-bottom: 0;
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 700;
 
     &Box {
@@ -211,15 +216,6 @@ a:hover {
         margin-left: 60px;
       }
     }
-
-    &MensajeConfirmacion {
-      display: none;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      justify-self: center;
-      padding: 50px;
-    }
   }
 
   &Actividad {
@@ -349,6 +345,15 @@ a:hover {
       &CaptchaError {
         display: none;
       }
+    }
+  }
+
+  &Footer {
+    grid-column: 1 / 3;
+    &Texto {
+      color: black;
+      text-align: center;
+      padding-top: 30px;
     }
   }
 }

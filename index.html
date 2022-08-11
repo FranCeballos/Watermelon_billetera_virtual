@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>JavaScript - Billetera Virtual</title>
+    <title>Watermelon - Billetera Virtual</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,10 +28,10 @@
       <!-- Bienvenida (login) -->
       <section class="bienvenida">
         <h1 class="bienvenidaTitulo">
-          ¡Hola! Bienvenido/a a tu billetera de confianza.
+          ¡Hola! Bienvenido/a a Watermelon. <br> Tu billetera de confianza.
         </h1>
         <div class="bienvenidaNombre">
-          <div class="input-group flex-nowrap">
+          <div class="input-group input-group-sm flex-nowrap">
             <input
               type="text"
               class="form-control bienvenidaNombreIngresar"
@@ -46,11 +47,14 @@
         <p class="nombreNoIngresado">Nombre no ingresado ❗️</p>
       </section>
 
-      
+      <!-- App -->
       <section class="appGrid">
-        <!-- Titulo App -->
+        <!-- Titulo-->
         <div class="appTituloBox">
-          <h1 class="appTitulo">Billetera Virtual</h1>
+          <h1 class="appTitulo">Watermelon</h1>
+          <div class="appLogoBox">
+            <img class="appLogo" src="./images/watermelon.png" alt="logo watermelon">
+          </div>
           <button type="button"
               class="btn btn-light btn-sm appResetBoton"
             >
@@ -115,10 +119,8 @@
               Confirmar ingreso ✓
             </button>
           </div>
-
-
         </div>
-
+        
         <!-- Pagar -->
         <div class="appPagarBox">
           <!-- Seleccionar tarjeta -->
@@ -250,7 +252,7 @@
           </p>
         </div>
 
-        <!-- Sección Transferencias -->
+        <!-- Transferencias -->
         <div class="appTransferir">
           <div class="appTransferirHeader">
             <p class="appTransferirTitulo">Transferir a Contactos</p>
@@ -287,7 +289,6 @@
               </button>
           </div>
 
-          <!-- Realizar Transferencia -->
           <div class=" appTransferirRealizar">
 
             <!-- Elegir Contacto y Monto -->
@@ -319,8 +320,11 @@
             </div>
           </div>
         </div>
+        <div class="appFooter">
+          <p class="appFooterTexto">2022 | Watermelon | Simulador Billetera Digital | Por: Francisco Ceballos</p>
+        </div>
+        
       </section>
-    </main>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script
