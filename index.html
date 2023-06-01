@@ -38,21 +38,22 @@
           ¡Hola! Bienvenido/a a Watermelon. <br />
           Tu billetera de confianza.
         </h1>
-        <div class="welcome__input-box">
-          <div class="input-group input-group-sm flex-nowrap">
+        <div class="welcome__form-box">
+          <div class="input-group input-group-lg mb-3 welcome__input-box">
             <input
+              id="login-input-name"
               type="text"
               class="form-control welcome__input"
-              placeholder="Nombre de Usuario"
-              aria-label="Nombre de Usuario"
-              aria-describedby="addon-wrapping"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="button-addon2"
             />
+            <button class="btn btn-secondary" type="button" id="button-addon2">
+              Log In
+            </button>
           </div>
-          <button type="button" class="btn btn-light btn-sm welcome__button">
-            Confirmar
-          </button>
         </div>
-        <p class="welcome__error-text">Nombre no ingresado ❗️</p>
+        <p class="welcome__error-text hidden">Nombre no ingresado ❗️</p>
       </section>
     </main>
 
