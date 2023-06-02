@@ -40,10 +40,10 @@
     </header>
     <main>
       <!-- LOG IN -->
-      <section id="welcome" class="welcome">
+      <section id="logIn" class="welcome hidden">
         <h1 class="welcome__title">
-          ¡Hola! Bienvenido/a a Watermelon. <br />
-          Tu billetera de confianza.
+          ¡Hello! Welcome to Watermelon. <br />
+          The wallet you trust.
         </h1>
         <div class="welcome__form-box">
           <div class="input-group input-group-lg mb-3 welcome__input-box">
@@ -63,7 +63,13 @@
         <p class="welcome__error-text hidden">Nombre no ingresado ❗️</p>
       </section>
 
-      <div id="app" class="app"></div>
+      <div id="app" class="app hidden">
+        <!-- Balance -->
+        <div class="section">
+          <p class="balance-amount">$0</p>
+          <p class="section__title">Balance</p>
+        </div>
+      </div>
 
       <footer class="footer">
         <div class="footer__github-box">
