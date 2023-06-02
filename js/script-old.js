@@ -4,7 +4,6 @@ let infoPersonal = {
   balance: 0,
   logueado: false,
   actividad: [],
-  contactos: [],
 };
 
 infoPersonalEnLS && (infoPersonal = infoPersonalEnLS);
