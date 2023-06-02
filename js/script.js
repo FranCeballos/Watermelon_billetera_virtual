@@ -44,14 +44,12 @@ class App {
     if (!this.#userExists(usernameValue)) {
       return this.#showErrorMessage(logInErrorText, "User not registered");
     }
-    this.#hideAndRemove(logInSection);
-    this.#addAndShow(appSection);
+    this.#showAppView();
   }
 
   #logOut() {
     localStorage.setItem("isLogged", false);
-    this.#hideAndRemove(appSection);
-    this.#addAndShow(logInSection);
+    this.#showLogInView();
   }
 
   // UI Controls
@@ -75,12 +73,22 @@ class App {
 
   #hideAndRemove(domElement) {
     this.#hideEle(domElement);
-    this.#removeEle(domElement);
+    setTimeout(() => this.#removeEle(domElement), 1000);
   }
 
   #addAndShow(domElement) {
     this.#addEle(domElement);
     setTimeout(() => this.#showEle(domElement), 500);
+  }
+
+  #showLogInView() {
+    this.#hideAndRemove(appSection);
+    this.#addAndShow(logInSection);
+  }
+
+  #showAppView() {
+    this.#hideAndRemove(logInSection);
+    this.#addAndShow(appSection);
   }
 
   #showErrorMessage(domElement, message) {
@@ -91,9 +99,8 @@ class App {
   //   UNIT
 
   #init() {
-    this.#logOut();
     const isLoggedIn = this.#getIsLoggedIn();
-    isLoggedIn ? this.#logIn() : this.#logOut();
+    isLoggedIn ? this.#showAppView() : this.#showLogInView();
     this.#addEventListeners();
   }
 

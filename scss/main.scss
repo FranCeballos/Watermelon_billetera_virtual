@@ -3,8 +3,9 @@
 @import "base/reset";
 @import "base/typography";
 
-@import "components/card";
+@import "components/app-section";
 
 @import "layouts/header";
 @import "layouts/welcome";
 @import "layouts/footer";
+@import "layouts/_app";

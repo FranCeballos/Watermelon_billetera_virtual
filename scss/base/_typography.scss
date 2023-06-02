@@ -1,1 +1,10 @@
+.app {
+  font-weight: 700;
+  font-size: 2rem;
+}
 
+.balance {
+  &__amount {
+    font-size: 7rem;
+  }
+}
