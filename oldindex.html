@@ -1,274 +1,280 @@
+<!-- Titulo-->
+<div class="header">
+  <h1 class="header__title">Watermelon</h1>
+  <div class="header__image-box">
+    <img
+      class="header__image"
+      src="./images/watermelon.png"
+      alt="logo watermelon"
+    />
+  </div>
+  <button id="reset-data" type="button" class="btn btn-light btn-sm">
+    Borrar Datos
+  </button>
+</div>
 
-      <!-- Titulo-->
-      <div class="header">
-        <h1 class="header__title">Watermelon</h1>
-        <div class="header__image-box">
-          <img class="header__image" src="./images/watermelon.png" alt="logo watermelon">
-        </div>
-        <button id="reset-data" type="button"
-            class="btn btn-light btn-sm"
-          >
-            Borrar Datos
-          </button>
+<!-- Saldo -->
+<div class="section">
+  <p class="section__title">Saldo</p>
+  <p class="balance-amount">$0</p>
+</div>
+
+<!-- Nombre de Usuario -->
+<div id="edit-name-section" class="section">
+  <button id="edit-name-button" type="button" class="btn btn-light btn-sm">
+    Editar
+  </button>
+  <div class="input-group">
+    <input
+      id="edit-name-input"
+      type="text"
+      class="form-control input-group-sm appNombreEditarInput"
+      placeholder="Nuevo nombre"
+      aria-label="Nuevo nombre"
+      aria-describedby="button-addon2"
+    />
+    <button class="btn btn-sm btn-secondary" type="button" id="button-addon2">
+      Confirmar
+    </button>
+  </div>
+  <p id="edit-name-current" class="section__title">Nombre</p>
+</div>
+
+<!-- RECEIVE MONEY -->
+<div id="receive-section" class="section">
+  <p class="section__title">Ingresar Dinero</p>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">$</span>
+    <input
+      id="receive-input"
+      type="number"
+      class="form-control input-group-sm"
+      placeholder="Amount to receive"
+      aria-label="Amount to receive"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+  <button id="receive-button" type="button" class="btn btn-primary btn-sm">
+    Confirmar ingreso ✓
+  </button>
+</div>
+
+<!-- PAY -->
+<div id="pay-section" class="section">
+  <!-- Select Card Type -->
+  <div class="appPagarSelector">
+    <p class="appPagarSelectorTitulo appNombreSubTitulo">Pagar</p>
+    <select
+      class="form-select form-select-sm"
+      name="tipo de tarjeta"
+      id="selectorTarjeta"
+    >
+      <option value="selected">Seleccionar medio de pago</option>
+      <option value="debito">Débito</option>
+      <option value="credito">Crédito</option>
+    </select>
+    <button
+      type="button"
+      class="btn btn-primary btn-sm appPagarSelectorTarjetaConfirmarBoton"
+    >
+      ✓
+    </button>
+    <button type="button" class="btn btn-light btn-sm appPagarResetBoton">
+      Atrás
+    </button>
+  </div>
+
+  <!-- Pagar con Débito -->
+  <div class="appPagarDebito">
+    <div class="appPagarDebitoBox1">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">$</span>
+        <input
+          type="number"
+          class="form-control input-group-sm appPagarDebitoInput"
+          placeholder="Monto a pagar con débito"
+          aria-label="Monto a pagar con débito"
+          aria-describedby="basic-addon1"
+        />
       </div>
+    </div>
+    <p class="appPagarDebitoResumen"></p>
+    <p class="appPagarDebitoMensajeError"></p>
+    <div class="appPagarDebitoBox2">
+      <button type="button" class="btn btn-primary btn-sm appPagarDebitoBoton">
+        Confirmar pago ✓
+      </button>
+    </div>
+  </div>
 
-      <!-- Saldo -->
-      <div class="section">
-        <p class="section__title">Saldo</p>
-        <p class="balance-amount">$0</p>
+  <!-- Pagar con Crédito -->
+  <div class="appPagarCredito">
+    <!-- Ingresar monto -->
+    <div class="appPagarCreditoBox1 creditoBox">
+      <div class="input-group">
+        <span class="input-group-text" id="basic-addon1">$</span>
+        <input
+          type="number"
+          class="form-control input-group-sm appPagarCreditoInput"
+          placeholder="Monto a pagar con crédito"
+          aria-label="Monto a pagar con crédito"
+          aria-describedby="basic-addon1"
+        />
       </div>
+    </div>
+    <!-- Selector cuotas -->
+    <div class="appPagarCreditoBox2 creditoBox">
+      <select name="selector de cuotas" id="selectorCuotas" class="form-select">
+        <option value="1">1 Cuota - 5% Interés</option>
+        <option value="3">3 Cuotas - 10% Interés</option>
+        <option value="6">6 Cuotas - 15% Interés</option>
+        <option value="12">12 Cuotas - 30% Interés</option>
+      </select>
+      <button type="button" class="btn btn-primary btn-sm appPagarCreditoBoton">
+        Confirmar pago ✓
+      </button>
+    </div>
+    <!-- Resumen y Saldo Insuficiente -->
+    <div class="appPagarCreditoBox3 creditoBox">
+      <p class="appPagarCreditoResumen appNombreSubTitulo">Resumen</p>
+      <p class="appPagarCreditoError appNombreSubTitulo">
+        Saldo Insuficiente 🚫
+      </p>
+    </div>
+  </div>
+</div>
 
-      <!-- Nombre de Usuario -->
-      <div id="edit-name-section" class="section">
-        <button id="edit-name-button"
-          type="button"
-          class="btn btn-light btn-sm"
-        >
-          Editar
-        </button>
-        <div class="input-group">
-          <input id="edit-name-input"
-            type="text"
-            class="form-control input-group-sm appNombreEditarInput"
-            placeholder="Nuevo nombre"
-            aria-label="Nuevo nombre"
-            aria-describedby="button-addon2"
-          />
-          <button
-            class="btn btn-sm btn-secondary"
-            type="button"
-            id="button-addon2"
-          >
-            Confirmar
-          </button>
-        </div>
-        <p id="edit-name-current" class="section__title">Nombre</p>
+<!-- Actividad Reciente -->
+<div class="appActividad">
+  <p class="appActividadTitulo">Actividad Reciente</p>
+  <ul class="appActividadLista"></ul>
+</div>
+
+<!-- Cotización Dolar -->
+<div class="appCotizacion">
+  <p class="appCotizacionTitulo">Cotización Dolar</p>
+  <table class="appCotizacionTabla">
+    <tr>
+      <th></th>
+      <th class="appCotizacionSubTitulo">Compra</th>
+      <th class="appCotizacionSubTitulo">Venta</th>
+    </tr>
+    <tr>
+      <td class="appCotizacionSubTitulo">Dolar Oficial</td>
+      <td class="compraDolarOficial appCotizacionNumero"></td>
+      <td class="ventaDolarOficial appCotizacionNumero"></td>
+    </tr>
+    <tr>
+      <td class="appCotizacionSubTitulo">Dolar Blue</td>
+      <td class="compraDolarBlue appCotizacionNumero"></td>
+      <td class="ventaDolarBlue appCotizacionNumero"></td>
+    </tr>
+  </table>
+  <p class="appCotizacionFuente">
+    Fuente:
+    <a target="_blank" href="https://bluelytics.com.ar/#!/">BlueLytics</a>
+  </p>
+</div>
+
+<!-- Transferencias -->
+<div class="appTransferir">
+  <div class="appTransferirHeader">
+    <p class="appTransferirTitulo">Transferir a Contactos</p>
+    <button class="btn btn-light btn-sm appTransferirResetBoton">Atrás</button>
+  </div>
+
+  <!-- Elejir Transferir o Agendar -->
+  <div class="appTransferirEleccion">
+    <button class="btn btn-light appTransferirElegirEleccionBoton">
+      Transferir
+    </button>
+    <button class="btn btn-light appTransferirAgendarEleccionBoton">
+      Agendar Contacto
+    </button>
+  </div>
+
+  <!-- Agendar Contacto -->
+  <div class="input-group appTransferirAgendar">
+    <input
+      type="text"
+      class="form-control input-group-sm appTransferirAgendarInput"
+      placeholder="Nombre a agendar"
+      aria-label="Nombre a agendar"
+      aria-describedby="button-addon2"
+    />
+    <button
+      class="btn btn-sm btn-secondary appTransferirAgendarConfirmarBoton"
+      type="button"
+      id="button-addon2"
+    >
+      Agendar
+    </button>
+    <button
+      class="btn btn-sm btn-dark appTransferirBorrarContactosBoton"
+      type="button"
+    >
+      Borrar todos los contactos
+    </button>
+  </div>
+
+  <div class="appTransferirRealizar">
+    <!-- Elegir Contacto y Monto -->
+    <div class="input-group input-group-sm appTransferirRealizarBox1">
+      <label class="input-group-text" for="selectContactos">Contactos</label>
+      <select
+        name="selecionar contacto"
+        id="selectContactos"
+        class="form-select"
+      >
+        <option value="0" selected>Seleccioná a quién transferir</option>
+      </select>
+      <div class="input-group input-group-sm">
+        <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
+        <input
+          type="number"
+          class="form-control appTransferirMontoInput"
+          placeholder="Monto a transferir"
+          aria-label="Monto a transferir"
+          aria-describedby="Monto a transferir"
+        />
       </div>
+      <p class="appTransferirMensajeSaldoInsuficiente">
+        Saldo insuficiente ❗️
+      </p>
+    </div>
 
-      <!-- RECEIVE MONEY -->
-      <div id="receive-section" class="section">
-        <p class="section__title">
-          Ingresar Dinero
-        </p>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">$</span>
-          <input
-            id="receive-input"
-            type="number"
-            class="form-control input-group-sm"
-            placeholder="Amount to receive"
-            aria-label="Amount to receive"
-            aria-describedby="basic-addon1"
-          />
-        </div>
+    <!-- Capcha y Confirmación -->
+    <div class="appTransferirRealizarBox2">
+      <div class="appTransferirCaptcha">
+        <p class="appTransferirCodigo">8767</p>
         <button
-          id="receive-button"
           type="button"
-          class="btn btn-primary btn-sm"
+          class="btn btn-light btn-sm appTransferirBotonReiniciarCaptcha"
         >
-          Confirmar ingreso ✓
+          🔄
         </button>
-      </div>
-      
-      <!-- PAY -->
-      <div id="pay-section" class="section">
-        <!-- Select Card Type -->
-        <div class="appPagarSelector">
-          <p class="appPagarSelectorTitulo appNombreSubTitulo">Pagar</p>
-          <select
-            class="form-select form-select-sm"
-            name="tipo de tarjeta"
-            id="selectorTarjeta"
-          >
-            <option value="selected">Seleccionar medio de pago</option>
-            <option value="debito">Débito</option>
-            <option value="credito">Crédito</option>
-          </select>
-          <button
-            type="button"
-            class="btn btn-primary btn-sm appPagarSelectorTarjetaConfirmarBoton"
-          >
-            ✓
-          </button>
-          <button
-            type="button"
-            class="btn btn-light btn-sm appPagarResetBoton"
-          >
-            Atrás
-          </button>
-        </div>
-
-        <!-- Pagar con Débito -->
-        <div class="appPagarDebito">
-          <div class="appPagarDebitoBox1">
-            <div class="input-group mb-3">
-              <span class="input-group-text" id="basic-addon1">$</span>
-              <input
-                type="number"
-                class="form-control input-group-sm appPagarDebitoInput"
-                placeholder="Monto a pagar con débito"
-                aria-label="Monto a pagar con débito"
-                aria-describedby="basic-addon1"
-              />
-            </div>
-          </div>
-          <p class="appPagarDebitoResumen"></p>
-          <p class="appPagarDebitoMensajeError"></p>
-          <div class="appPagarDebitoBox2">
-            <button
-              type="button"
-              class="btn btn-primary btn-sm appPagarDebitoBoton"
-            >
-              Confirmar pago ✓
-            </button>
-          </div>
-        </div>
-
-        <!-- Pagar con Crédito -->
-        <div class="appPagarCredito">
-          <!-- Ingresar monto -->
-          <div class="appPagarCreditoBox1 creditoBox">
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">$</span>
-              <input
-                type="number"
-                class="form-control input-group-sm appPagarCreditoInput"
-                placeholder="Monto a pagar con crédito"
-                aria-label="Monto a pagar con crédito"
-                aria-describedby="basic-addon1"
-              />
-            </div>
-          </div>
-          <!-- Selector cuotas -->
-          <div class="appPagarCreditoBox2 creditoBox">
-            <select
-              name="selector de cuotas"
-              id="selectorCuotas"
-              class="form-select"
-            >
-              <option value="1">1 Cuota - 5% Interés</option>
-              <option value="3">3 Cuotas - 10% Interés</option>
-              <option value="6">6 Cuotas - 15% Interés</option>
-              <option value="12">12 Cuotas - 30% Interés</option>
-            </select>
-            <button
-              type="button"
-              class="btn btn-primary btn-sm appPagarCreditoBoton"
-            >
-              Confirmar pago ✓
-            </button>
-          </div>
-          <!-- Resumen y Saldo Insuficiente -->
-          <div class="appPagarCreditoBox3 creditoBox">
-            <p class="appPagarCreditoResumen appNombreSubTitulo">Resumen</p>
-            <p class="appPagarCreditoError appNombreSubTitulo">
-              Saldo Insuficiente 🚫
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Actividad Reciente -->
-      <div class="appActividad">
-        <p class="appActividadTitulo">Actividad Reciente</p>
-        <ul class="appActividadLista">
-        </ul>
-      </div>
-
-      <!-- Cotización Dolar -->
-      <div class="appCotizacion">
-        <p class="appCotizacionTitulo">Cotización Dolar</p>
-        <table class="appCotizacionTabla">
-          <tr>
-            <th></th>
-            <th class="appCotizacionSubTitulo">Compra</th>
-            <th class="appCotizacionSubTitulo">Venta</th>
-          </tr>
-          <tr>
-            <td class="appCotizacionSubTitulo">Dolar Oficial</td>
-            <td class="compraDolarOficial appCotizacionNumero"></td>
-            <td class="ventaDolarOficial appCotizacionNumero"></td>
-          </tr>
-          <tr>
-            <td class="appCotizacionSubTitulo">Dolar Blue</td>
-            <td class="compraDolarBlue appCotizacionNumero"></td>
-            <td class="ventaDolarBlue appCotizacionNumero"></td>
-          </tr>
-        </table>
-        <p class="appCotizacionFuente">
-          Fuente:
-          <a target="_blank" href="https://bluelytics.com.ar/#!/">BlueLytics</a>
+        <p class="appTransferirMensajeCaptchaError">
+          El código no coincide ❗️
         </p>
       </div>
-
-      <!-- Transferencias -->
-      <div class="appTransferir">
-        <div class="appTransferirHeader">
-          <p class="appTransferirTitulo">Transferir a Contactos</p>
-          <button class="btn btn-light btn-sm appTransferirResetBoton">Atrás</button>
-        </div>
-
-        <!-- Elejir Transferir o Agendar -->
-        <div class="appTransferirEleccion">
-          <button class="btn btn-light appTransferirElegirEleccionBoton">Transferir</button>
-          <button class="btn btn-light appTransferirAgendarEleccionBoton">Agendar Contacto</button>
-        </div>
-
-        <!-- Agendar Contacto -->
-        <div class="input-group appTransferirAgendar">
-            <input
-              type="text"
-              class="form-control input-group-sm appTransferirAgendarInput"
-              placeholder="Nombre a agendar"
-              aria-label="Nombre a agendar"
-              aria-describedby="button-addon2"
-            />
-            <button
-              class="btn btn-sm btn-secondary appTransferirAgendarConfirmarBoton"
-              type="button"
-              id="button-addon2"
-            >
-              Agendar
-            </button>
-            <button
-              class="btn btn-sm btn-dark appTransferirBorrarContactosBoton"
-              type="button"
-            >
-              Borrar todos los contactos
-            </button>
-        </div>
-
-        <div class=" appTransferirRealizar">
-
-          <!-- Elegir Contacto y Monto -->
-          <div class=" input-group input-group-sm appTransferirRealizarBox1">
-            <label class="input-group-text" for="selectContactos">Contactos</label>
-            <select name="selecionar contacto" id="selectContactos" class="form-select">
-              <option value="0" selected>Seleccioná a quién transferir</option>
-            </select>
-            <div class="input-group input-group-sm">
-              <span class="input-group-text" id="inputGroup-sizing-sm">$</span>
-              <input type="number" class="form-control appTransferirMontoInput"
-              placeholder="Monto a transferir" aria-label="Monto a transferir" aria-describedby="Monto a transferir">
-            </div>
-            <p class="appTransferirMensajeSaldoInsuficiente">Saldo insuficiente ❗️</p>
-          </div>
-
-          <!-- Capcha y Confirmación -->
-          <div class="appTransferirRealizarBox2">
-            <div class="appTransferirCaptcha">
-              <p class="appTransferirCodigo">8767</p>
-              <button type="button" class="btn btn-light btn-sm appTransferirBotonReiniciarCaptcha">🔄</button>
-              <p class="appTransferirMensajeCaptchaError">El código no coincide ❗️ </p>
-            </div>
-            <div class="input-group input-group-sm">
-              <span class="input-group-text" id="inputGroup-sizing-sm">Ingresá Código del Captcha</span>
-              <input type="number" maxlength="6" class="form-control appTransferirInputCodigoCaptcha" aria-label="Introducí el Código" aria-describedby="Introducir Codigo">
-            </div>                
-            <button type="button" class="btn btn-primary btn-sm appTransferirBotonConfirmarTrasferencia">Confirmar Transferencia ✓</button>
-          </div>
-        </div>
+      <div class="input-group input-group-sm">
+        <span class="input-group-text" id="inputGroup-sizing-sm"
+          >Ingresá Código del Captcha</span
+        >
+        <input
+          type="number"
+          maxlength="6"
+          class="form-control appTransferirInputCodigoCaptcha"
+          aria-label="Introducí el Código"
+          aria-describedby="Introducir Codigo"
+        />
       </div>
-      <div class="appFooter">
-        <p class="appFooterTexto">2022 | Watermelon | Simulador Billetera Digital | Por: Francisco Ceballos</p>
-      </div>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm appTransferirBotonConfirmarTrasferencia"
+      >
+        Confirmar Transferencia ✓
+      </button>
+    </div>
+  </div>
+</div>

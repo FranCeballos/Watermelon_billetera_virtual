@@ -19,6 +19,13 @@
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
     <link rel="stylesheet" href="/css/styles.css" />
+    <script defer src="/js/bootstrap.bundle.min.js"></script>
+    <script
+      defer
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script defer src="/js/script.js"></script>
   </head>
 
   <body>
@@ -31,8 +38,8 @@
         />
       </div>
     </header>
-    <!-- LOG IN -->
     <main>
+      <!-- LOG IN -->
       <section id="welcome" class="welcome">
         <h1 class="welcome__title">
           ¡Hola! Bienvenido/a a Watermelon. <br />
@@ -55,13 +62,26 @@
         </div>
         <p class="welcome__error-text hidden">Nombre no ingresado ❗️</p>
       </section>
-    </main>
 
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/toastify-js"
-    ></script>
-    <script src="/js/script.js"></script>
+      <div id="app" class="app"></div>
+
+      <footer class="footer">
+        <div class="footer__github-box">
+          <a
+            class="footer__github-link"
+            href="https://github.com/FranCeballos/Watermelon_billetera_virtual.git"
+            target="_blank"
+          >
+            <img
+              src="/images/github.png"
+              alt="Github Logo"
+              class="footer__github"
+            />
+          </a>
+        </div>
+        <p class="footer__text-app">2023 | Watermelon - Wallet Simulator</p>
+        <p class="footer__text-dev">Dev. Francisco Ceballos</p>
+      </footer>
+    </main>
   </body>
 </html>

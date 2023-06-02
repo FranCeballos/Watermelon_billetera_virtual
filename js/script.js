@@ -7,17 +7,13 @@ class App {
     let name = "";
     let isLoggedIn = false;
     let balance = 0;
-
-    this.hide(welcomeSection);
   }
 
   show(element) {}
 
   update(element) {}
 
-  hide(element) {
-    welcomeSection.classList;
-  }
+  hide(element) {}
 
   remove(element) {}
 }
