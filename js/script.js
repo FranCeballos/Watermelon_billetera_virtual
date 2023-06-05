@@ -115,7 +115,6 @@ class App {
 
   //   UNIT
   #init() {
-    this.#logOut();
     const isLoggedIn = this.#getIsLoggedIn();
     isLoggedIn ? this.#showAppView() : this.#showLogInView();
     this.#addEventListeners();

@@ -12,11 +12,13 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1rem;
 }
+
 .section {
   padding: 2rem;
   border-radius: 2rem;
+  width: 100%;
   // background-color: rgba(0, 0, 0, 0.094);
 }
 
@@ -27,7 +29,7 @@
   align-items: flex-start;
   background-color: rgba(0, 0, 0, 0.094);
   overflow: scroll;
-  width: 100%;
+
   //   border: 1px solid red;
 }
 #dolar {
@@ -36,6 +38,26 @@
 #movements {
   //   border: 1px solid blue;
 }
+.movements {
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+  }
+  &__title {
+    margin-bottom: 3rem;
+  }
+}
 #activity {
   //   border: 1px solid green;
+}
+
+@media screen and (max-width: 768px) {
+  .movements {
+    &__buttons {
+      justify-content: center;
+    }
+  }
 }
