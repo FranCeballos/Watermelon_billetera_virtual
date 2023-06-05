@@ -95,7 +95,7 @@ class App {
 
   #addAndShow(domElement) {
     this.#addEle(domElement);
-    setTimeout(() => this.#showEle(domElement), 500);
+    setTimeout(() => this.#showEle(domElement), 1000);
   }
 
   #showLogInView() {
@@ -115,6 +115,7 @@ class App {
 
   //   UNIT
   #init() {
+    this.#logOut();
     const isLoggedIn = this.#getIsLoggedIn();
     isLoggedIn ? this.#showAppView() : this.#showLogInView();
     this.#addEventListeners();

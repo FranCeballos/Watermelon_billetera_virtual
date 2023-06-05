@@ -8,6 +8,7 @@
   margin: 0 auto;
   padding: 80px 5vw 0rem 5vw;
   transition: 1s all ease-out;
+  animation: fadeInOut 1s ease-out 1s;
 
   &__title {
     font-size: 4rem;
