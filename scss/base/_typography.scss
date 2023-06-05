@@ -5,6 +5,29 @@
 
 .balance {
   &__amount {
-    font-size: 7rem;
+    font-size: 5vw;
+    margin-bottom: 0;
+  }
+}
+
+.dolar {
+  &__text {
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+
+    &-alt {
+      color: $font-color-blue;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .balance {
+    &__amount {
+      font-size: 8vw;
+    }
   }
 }

@@ -1,30 +1,40 @@
-.app {
+#app {
+  padding: 0rem 5vw;
   max-width: 1024px;
+  margin: 80px auto;
+}
+
+.app {
+  width: 100%;
   min-height: 100vh;
-  margin: 80px auto 0 auto;
-  padding: 2vw 5vw;
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-auto-rows: minmax(5rem, 5fr);
-  grid-template-areas:
-    "bl . . . dl dl dl dl dl"
-    "mv mv mv mv mv mv mv mv mv"
-    "ac ac ac ac ac ac ac ac ac";
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.section {
+  padding: 2rem;
+  border-radius: 2rem;
+  // background-color: rgba(0, 0, 0, 0.094);
 }
 
 #balance {
-  border: 1px solid red;
-  grid-area: bl;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.094);
+  overflow: scroll;
+  width: 100%;
+  //   border: 1px solid red;
 }
 #dolar {
-  border: 1px solid yellow;
-  grid-area: dl;
+  //   border: 1px solid yellow;
 }
 #movements {
-  border: 1px solid blue;
-  grid-area: mv;
+  //   border: 1px solid blue;
 }
 #activity {
-  border: 1px solid green;
-  grid-area: ac;
+  //   border: 1px solid green;
 }
