@@ -10,6 +10,13 @@ const appSection = document.querySelector("#app");
 const oficialDolarText = document.querySelector("#dolar-oficial");
 const blueDolarText = document.querySelector("#dolar-blue");
 
+const movementsSection = document.querySelector("#movements");
+const sendSection = document.querySelector(".movements__actions-send");
+const receiveSection = document.querySelector(".movements__actions-receive");
+const sendButton = document.querySelector("#button-send");
+const receiveButton = document.querySelector("#button-receive");
+const closeMovButton = document.querySelector("#button-mov-close");
+
 const users = [
   {
     name: "fran",
@@ -19,11 +26,10 @@ const users = [
 ];
 
 class App {
+  name = "";
+  isLoggedIn = false;
+  balance = 0;
   constructor() {
-    let name = "";
-    let isLoggedIn = false;
-    let balance = 0;
-
     this.#init();
   }
 
@@ -41,7 +47,6 @@ class App {
 
   async #showDolar() {
     const dolarValue = await this.#fetchDolar();
-    console.log(dolarValue);
     oficialDolarText.innerHTML = `Buy: ${dolarValue.oficial.value_buy} - Sell: ${dolarValue.oficial.value_sell}`;
     blueDolarText.innerHTML = `Buy: ${dolarValue.blue.value_buy} - Sell: ${dolarValue.blue.value_sell}`;
   }
@@ -61,7 +66,7 @@ class App {
     if (!this.#userExists(usernameValue)) {
       return this.#showErrorMessage(logInErrorText, "User not registered");
     }
-    this.#showAppView();
+    this.#showAppView(1000, 1000);
   }
 
   #logOut() {
@@ -70,12 +75,12 @@ class App {
   }
 
   // UI Controls
-  #addEle(domElement) {
-    domElement.style.display = "flex";
+  #addEle(domElement, displayValue) {
+    domElement.style.display = displayValue;
   }
 
   #showEle(domElement) {
-    logInSection.classList.remove("hidden");
+    domElement.classList.remove("hidden");
   }
 
   #updateUI(domElement) {}
@@ -88,24 +93,24 @@ class App {
     logInSection.classList.add("hidden");
   }
 
-  #hideAndRemove(domElement) {
+  #hideAndRemove(domElement, delay = 0) {
     this.#hideEle(domElement);
-    setTimeout(() => this.#removeEle(domElement), 1000);
+    setTimeout(() => this.#removeEle(domElement), delay);
   }
 
-  #addAndShow(domElement) {
-    this.#addEle(domElement);
-    setTimeout(() => this.#showEle(domElement), 1000);
+  #addAndShow(domElement, displayValue, delay = 0) {
+    this.#addEle(domElement, displayValue);
+    setTimeout(() => this.#showEle(domElement), delay);
   }
 
   #showLogInView() {
-    this.#hideAndRemove(appSection);
-    this.#addAndShow(logInSection);
+    this.#hideAndRemove(appSection, 0);
+    this.#addAndShow(logInSection, "flex", 1000);
   }
 
-  #showAppView() {
-    this.#hideAndRemove(logInSection);
-    this.#addAndShow(appSection);
+  #showAppView(exitDelay, enterDelay) {
+    this.#hideAndRemove(logInSection, exitDelay);
+    this.#addAndShow(appSection, "flex", enterDelay);
   }
 
   #showErrorMessage(domElement, message) {
@@ -113,17 +118,79 @@ class App {
     domElement.innerHTML = message;
   }
 
+  // SEND AND RECEIVE
+  #toggleMovementsSectionHeight(view) {
+    console.log(view);
+    view === "none"
+      ? (movementsSection.style.height = "14rem")
+      : (movementsSection.style.height = "22.5rem");
+  }
+
+  #changeActiveMovButton(view) {
+    switch (view) {
+      case "none":
+        sendButton.classList.remove("active");
+        receiveButton.classList.remove("active");
+        break;
+      case "send":
+        sendButton.classList.add("active");
+        receiveButton.classList.remove("active");
+        break;
+      case "receive":
+        sendButton.classList.remove("active");
+        receiveButton.classList.add("active");
+    }
+  }
+
+  #updateMovementsView(view) {
+    switch (view) {
+      case "none":
+        this.#hideAndRemove(sendSection);
+        this.#hideAndRemove(receiveSection);
+        this.#toggleMovementsSectionHeight(view);
+        this.#hideAndRemove(closeMovButton);
+        break;
+      case "send":
+        this.#hideAndRemove(receiveSection);
+        setTimeout(() => this.#addAndShow(sendSection, "flex", 1000), 50);
+        this.#toggleMovementsSectionHeight(view);
+        this.#addAndShow(closeMovButton, "flex", 1000);
+        break;
+      case "receive":
+        this.#hideAndRemove(sendSection);
+        setTimeout(() => this.#addAndShow(receiveSection, "flex", 50));
+        this.#toggleMovementsSectionHeight(view);
+        this.#addAndShow(closeMovButton, "flex", 1000);
+        break;
+    }
+    this.#changeActiveMovButton(view);
+  }
+
+  #changeMovementsView(view) {
+    this.#updateMovementsView(view);
+  }
+
   //   UNIT
   #init() {
     const isLoggedIn = this.#getIsLoggedIn();
-    isLoggedIn ? this.#showAppView() : this.#showLogInView();
-    this.#addEventListeners();
+    isLoggedIn ? this.#showAppView(0, 1000) : this.#showLogInView();
     this.#showDolar();
+    this.#addEventListeners();
+    this.#changeMovementsView("none");
   }
 
   #addEventListeners() {
     logInButton.addEventListener("click", () => {
       this.#logIn();
+    });
+    sendButton.addEventListener("click", () => {
+      this.#changeMovementsView("send");
+    });
+    receiveButton.addEventListener("click", () => {
+      this.#changeMovementsView("receive");
+    });
+    closeMovButton.addEventListener("click", () => {
+      this.#changeMovementsView("none");
     });
   }
 }

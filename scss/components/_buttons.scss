@@ -3,26 +3,26 @@ button {
 }
 
 .button {
+  display: flex;
   border: 0px;
   border-radius: 1rem;
   padding: 0.8rem 1.5rem;
   font-size: 1.6rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.312);
+  animation: fadeInOut 1s ease-out;
   transition: 0.3s all ease-out;
 
-  &:hover {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.312);
-    transform: scale(1.03);
-  }
-
-  &:active {
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.312);
-    transform: scale(0.98);
-  }
   &-action {
-    background-color: $font-color-blue;
-    color: $font-color-grey;
+    background-color: $color-blue-1;
+    color: $color-grey-1;
+    &:hover,
+    &.active {
+      background-color: $color-pink-1;
+    }
+  }
+  &-close {
+    background-color: $color-grey-2;
+    color: $color-grey-1;
   }
 }
