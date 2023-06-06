@@ -41,7 +41,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 15rem;
+  height: fit-content;
   //   border: 1px solid blue;
 }
 .movements {
@@ -50,6 +50,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
     gap: 3rem;
     margin-bottom: 2rem;
   }
@@ -58,14 +59,24 @@
   }
 
   &__actions {
+    background-color: $bg-color-dark-2;
     width: 100%;
     height: 100%;
+    border-radius: 2rem;
 
     &-receive {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 3rem;
       animation: fadeInOut 1s ease-out;
+      padding: 2rem;
     }
     &-send {
       animation: fadeInOut 1s ease-out;
+      padding: 2rem;
     }
   }
 }

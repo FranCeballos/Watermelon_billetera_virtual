@@ -119,12 +119,6 @@ class App {
   }
 
   // SEND AND RECEIVE
-  #toggleMovementsSectionHeight(view) {
-    console.log(view);
-    view === "none"
-      ? (movementsSection.style.height = "14rem")
-      : (movementsSection.style.height = "22.5rem");
-  }
 
   #changeActiveMovButton(view) {
     switch (view) {
@@ -147,19 +141,16 @@ class App {
       case "none":
         this.#hideAndRemove(sendSection);
         this.#hideAndRemove(receiveSection);
-        this.#toggleMovementsSectionHeight(view);
         this.#hideAndRemove(closeMovButton);
         break;
       case "send":
         this.#hideAndRemove(receiveSection);
         setTimeout(() => this.#addAndShow(sendSection, "flex", 1000), 50);
-        this.#toggleMovementsSectionHeight(view);
         this.#addAndShow(closeMovButton, "flex", 1000);
         break;
       case "receive":
         this.#hideAndRemove(sendSection);
         setTimeout(() => this.#addAndShow(receiveSection, "flex", 50));
-        this.#toggleMovementsSectionHeight(view);
         this.#addAndShow(closeMovButton, "flex", 1000);
         break;
     }

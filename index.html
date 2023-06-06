@@ -156,7 +156,23 @@
                 <p>Send</p>
               </div>
               <div class="movements__actions-receive hidden">
-                <p>Receive</p>
+                <label for="receive-input" class="receive__label"
+                  >Enter amount:</label
+                >
+                <input
+                  id="receive-input"
+                  class="input input__amount"
+                  type="number"
+                  inputmode="decimal"
+                  placeholder="$"
+                />
+                <button
+                  id="receive-confirm"
+                  type="button"
+                  class="button button-action"
+                >
+                  CONFIRM
+                </button>
               </div>
             </div>
           </section>

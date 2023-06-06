@@ -24,6 +24,12 @@
   }
 }
 
+.receive {
+  &__label {
+    color: $color-pink-1;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .balance {
     &__amount {
