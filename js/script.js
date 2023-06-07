@@ -4,17 +4,13 @@ const logInSection = document.querySelector("#logIn");
 const logInInput = document.querySelector("#login-input-name");
 const logInButton = document.querySelector(".logIn__button");
 const logInErrorText = document.querySelector(".welcome__error-text");
-
 const appSection = document.querySelector("#app");
-
 const oficialDolarText = document.querySelector("#dolar-oficial");
 const blueDolarText = document.querySelector("#dolar-blue");
-
-const movementsSection = document.querySelector("#movements");
 const sendSection = document.querySelector(".movements__actions-send");
 const receiveSection = document.querySelector(".movements__actions-receive");
-const sendButton = document.querySelector("#button-send");
-const receiveButton = document.querySelector("#button-receive");
+const sendNavButton = document.querySelector("#button-send");
+const receiveNavButton = document.querySelector("#button-receive");
 const closeMovButton = document.querySelector("#button-mov-close");
 
 const users = [
@@ -52,7 +48,6 @@ class App {
   }
 
   // LogIn Methods
-
   #getIsLoggedIn() {
     return localStorage.getItem("isLogged") === "true" || false;
   }
@@ -83,14 +78,12 @@ class App {
     domElement.classList.remove("hidden");
   }
 
-  #updateUI(domElement) {}
-
   #removeEle(domElement) {
     domElement.style.display = "none";
   }
 
   #hideEle(domElement) {
-    logInSection.classList.add("hidden");
+    domElement.classList.add("hidden");
   }
 
   #hideAndRemove(domElement, delay = 0) {
@@ -119,24 +112,23 @@ class App {
   }
 
   // SEND AND RECEIVE
-
   #changeActiveMovButton(view) {
     switch (view) {
       case "none":
-        sendButton.classList.remove("active");
-        receiveButton.classList.remove("active");
+        sendNavButton.classList.remove("active");
+        receiveNavButton.classList.remove("active");
         break;
       case "send":
-        sendButton.classList.add("active");
-        receiveButton.classList.remove("active");
+        sendNavButton.classList.add("active");
+        receiveNavButton.classList.remove("active");
         break;
       case "receive":
-        sendButton.classList.remove("active");
-        receiveButton.classList.add("active");
+        sendNavButton.classList.remove("active");
+        receiveNavButton.classList.add("active");
     }
   }
 
-  #updateMovementsView(view) {
+  #changeMovementsView(view) {
     switch (view) {
       case "none":
         this.#hideAndRemove(sendSection);
@@ -144,21 +136,17 @@ class App {
         this.#hideAndRemove(closeMovButton);
         break;
       case "send":
-        this.#hideAndRemove(receiveSection);
-        setTimeout(() => this.#addAndShow(sendSection, "flex", 1000), 50);
+        this.#hideAndRemove(receiveSection, 100);
+        setTimeout(() => this.#addAndShow(sendSection, "flex", 100), 100);
         this.#addAndShow(closeMovButton, "flex", 1000);
         break;
       case "receive":
-        this.#hideAndRemove(sendSection);
-        setTimeout(() => this.#addAndShow(receiveSection, "flex", 50));
+        this.#hideAndRemove(sendSection, 100);
+        setTimeout(() => this.#addAndShow(receiveSection, "flex", 100), 100);
         this.#addAndShow(closeMovButton, "flex", 1000);
         break;
     }
     this.#changeActiveMovButton(view);
-  }
-
-  #changeMovementsView(view) {
-    this.#updateMovementsView(view);
   }
 
   //   UNIT
@@ -174,10 +162,10 @@ class App {
     logInButton.addEventListener("click", () => {
       this.#logIn();
     });
-    sendButton.addEventListener("click", () => {
+    sendNavButton.addEventListener("click", () => {
       this.#changeMovementsView("send");
     });
-    receiveButton.addEventListener("click", () => {
+    receiveNavButton.addEventListener("click", () => {
       this.#changeMovementsView("receive");
     });
     closeMovButton.addEventListener("click", () => {

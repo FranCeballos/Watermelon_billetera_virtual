@@ -126,7 +126,7 @@
             <p class="balance__amount">$0</p>
           </section>
 
-          <section id="movements" class="section">
+          <section id="movements" class="section__sub">
             <p class="movements__title">Send & Receive</p>
             <div class="movements__buttons">
               <button
@@ -153,15 +153,51 @@
             </div>
             <div class="movements__actions">
               <div class="movements__actions-send hidden">
-                <p>Send</p>
+                <div class="form__section-row">
+                  <label for="send-search" class="form__label"
+                    >Select Username:</label
+                  >
+                  <input
+                    id="send-search"
+                    class="input input__dark"
+                    type="text"
+                    placeholder="Search Username"
+                  />
+                  <select
+                    name="select receiver"
+                    id="send-select"
+                    class="select__contacts"
+                  >
+                    <option value="default">Select Username</option>
+                  </select>
+                </div>
+                <div class="form__section-row">
+                  <label for="send-input" class="form__label"
+                    >Enter amount:</label
+                  >
+                  <input
+                    id="send-input"
+                    class="input input__dark"
+                    type="number"
+                    inputmode="decimal"
+                    placeholder="$"
+                  />
+                  <button
+                    id="send-confirm"
+                    type="button"
+                    class="button button-action"
+                  >
+                    CONFIRM
+                  </button>
+                </div>
               </div>
               <div class="movements__actions-receive hidden">
-                <label for="receive-input" class="receive__label"
+                <label for="receive-input" class="form__label"
                   >Enter amount:</label
                 >
                 <input
                   id="receive-input"
-                  class="input input__amount"
+                  class="input input__dark"
                   type="number"
                   inputmode="decimal"
                   placeholder="$"

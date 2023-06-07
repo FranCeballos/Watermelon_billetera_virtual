@@ -16,11 +16,20 @@
 }
 
 .section {
-  padding: 2rem;
+  padding: 2rem 2.5rem;
   border-radius: 2rem;
   width: 100%;
+  transition: 0.3s all ease-out;
   animation: fadeInOut 1s ease-out 1s;
   // background-color: rgba(0, 0, 0, 0.094);
+
+  &__sub {
+    padding: 2rem;
+    border-radius: 2rem;
+    width: 100%;
+    animation: fadeInOut 1s ease-out 1s;
+    // background-color: rgba(0, 0, 0, 0.094);
+  }
 }
 
 #balance {
@@ -30,6 +39,7 @@
   align-items: flex-start;
   background-color: rgba(0, 0, 0, 0.094);
   overflow: scroll;
+  margin-bottom: 3rem;
 
   //   border: 1px solid red;
 }
@@ -52,7 +62,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
   &__title {
     margin-bottom: 3rem;
@@ -63,20 +73,24 @@
     width: 100%;
     height: 100%;
     border-radius: 2rem;
+    animation: fadeInOut 1s ease-out 1s;
+    // padding: 3rem;
 
-    &-receive {
+    & div {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
       gap: 3rem;
       animation: fadeInOut 1s ease-out;
-      padding: 2rem;
     }
-    &-send {
-      animation: fadeInOut 1s ease-out;
-      padding: 2rem;
+
+    &-send,
+    &-receive {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
     }
   }
 }
@@ -90,5 +104,18 @@
     &__buttons {
       justify-content: center;
     }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .movements {
+    &-send {
+      padding: 3rem 0;
+    }
+  }
+}
+.section {
+  &__sub {
+    padding: 1rem;
   }
 }
