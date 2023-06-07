@@ -24,6 +24,14 @@
   }
 }
 
+.activity {
+  &__item {
+    &-title {
+      color: $color-blue-1;
+    }
+  }
+}
+
 .form {
   &__label {
     color: $color-pink-1;
