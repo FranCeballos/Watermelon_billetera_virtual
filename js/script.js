@@ -5,13 +5,20 @@ const logInInput = document.querySelector("#login-input-name");
 const logInButton = document.querySelector(".logIn__button");
 const logInErrorText = document.querySelector(".welcome__error-text");
 const appSection = document.querySelector("#app");
+
 const oficialDolarText = document.querySelector("#dolar-oficial");
 const blueDolarText = document.querySelector("#dolar-blue");
+
+const balanceTextEle = document.querySelector(".balance__amount");
+
 const sendSection = document.querySelector(".movements__actions-send");
-const receiveSection = document.querySelector(".movements__actions-receive");
+const depositSection = document.querySelector(".movements__actions-receive");
 const sendNavButton = document.querySelector("#button-send");
-const receiveNavButton = document.querySelector("#button-receive");
+const depositNavButton = document.querySelector("#button-receive");
 const closeMovButton = document.querySelector("#button-mov-close");
+const depositInput = document.querySelector("#receive-input");
+const depositInputErrorText = document.querySelector(".receive__error-text");
+const depositConfirmButton = document.querySelector("#receive-confirm");
 
 const users = [
   {
@@ -107,24 +114,74 @@ class App {
   }
 
   #showErrorMessage(domElement, message) {
-    this.#addAndShow(domElement);
+    this.#addAndShow(domElement, "inline-block");
     domElement.innerHTML = message;
   }
+
+  #resetErrorMessages() {
+    this.#hideAndRemove(logInErrorText);
+    this.#hideAndRemove(depositInputErrorText);
+  }
+
+  #resetInputs() {
+    logInInput.value = "";
+    depositInput.value = "";
+  }
+
+  #updateUI() {}
+
+  #updateBalance() {
+    balanceTextEle.innerHTML = `$${this.balance}`;
+  }
+
+  #resetMovementsView() {
+    this.#changeMovementsView("none");
+    this.#resetInputs();
+    this.#resetErrorMessages();
+  }
+
+  #resetInputsAndErrors() {}
+
+  #updateActivity() {}
+
+  // Money Movements
+  #receiveMoney() {
+    const depositValue = parseFloat(depositInput.value);
+    if (isNaN(depositValue) || depositValue === 0) {
+      console.log("DepositInput: Select an amount bigger than 0.");
+      return this.#showErrorMessage(
+        depositInputErrorText,
+        "Select an amount bigger than 0."
+      );
+    }
+    console.log(depositValue);
+    this.balance += depositValue;
+    this.#updateBalance();
+    this.#resetMovementsView();
+    Toastify({
+      text: `You had a deposit of $${depositValue}.`,
+      duration: 3000,
+    }).showToast();
+  }
+
+  #sendMoney(amount, user) {}
 
   // SEND AND RECEIVE
   #changeActiveMovButton(view) {
     switch (view) {
       case "none":
         sendNavButton.classList.remove("active");
-        receiveNavButton.classList.remove("active");
+        depositNavButton.classList.remove("active");
+        this.#resetInputs();
+        this.#resetErrorMessages();
         break;
       case "send":
         sendNavButton.classList.add("active");
-        receiveNavButton.classList.remove("active");
+        depositNavButton.classList.remove("active");
         break;
       case "receive":
         sendNavButton.classList.remove("active");
-        receiveNavButton.classList.add("active");
+        depositNavButton.classList.add("active");
     }
   }
 
@@ -132,17 +189,17 @@ class App {
     switch (view) {
       case "none":
         this.#hideAndRemove(sendSection);
-        this.#hideAndRemove(receiveSection);
+        this.#hideAndRemove(depositSection);
         this.#hideAndRemove(closeMovButton);
         break;
       case "send":
-        this.#hideAndRemove(receiveSection, 100);
+        this.#hideAndRemove(depositSection, 100);
         setTimeout(() => this.#addAndShow(sendSection, "flex", 100), 100);
         this.#addAndShow(closeMovButton, "flex", 1000);
         break;
       case "receive":
         this.#hideAndRemove(sendSection, 100);
-        setTimeout(() => this.#addAndShow(receiveSection, "flex", 100), 100);
+        setTimeout(() => this.#addAndShow(depositSection, "flex", 100), 100);
         this.#addAndShow(closeMovButton, "flex", 1000);
         break;
     }
@@ -165,11 +222,14 @@ class App {
     sendNavButton.addEventListener("click", () => {
       this.#changeMovementsView("send");
     });
-    receiveNavButton.addEventListener("click", () => {
+    depositNavButton.addEventListener("click", () => {
       this.#changeMovementsView("receive");
     });
     closeMovButton.addEventListener("click", () => {
       this.#changeMovementsView("none");
+    });
+    depositConfirmButton.addEventListener("click", () => {
+      this.#receiveMoney();
     });
   }
 }
