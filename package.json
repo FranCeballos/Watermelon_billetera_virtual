@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/FranCeballos/billetera_virtual/issues"
   },
-  "homepage": "https://github.com/FranCeballos/billetera_virtual#readme"
+  "homepage": "https://github.com/FranCeballos/billetera_virtual#readme",
+  "dependencies": {
+    "sass": "^1.63.6"
+  }
 }
