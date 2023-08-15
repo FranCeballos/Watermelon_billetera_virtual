@@ -1,10 +1,18 @@
-import Header from "../components/layout/Header";
+import BalanceContainer from "../components/Balance/BalanceContainer";
+import DolarContainer from "../components/Dolar/DolarContainer";
+import Header from "../components/Layout/Header";
+import MovementsContainer from "../components/Movements/MovementsContainer";
 import classes from "./AppPage.module.css";
 const AppPage = () => {
   return (
-    <div className={classes.container}>
+    <>
       <Header />
-    </div>
+      <main className={classes.container}>
+        <DolarContainer />
+        <BalanceContainer />
+        <MovementsContainer />
+      </main>
+    </>
   );
 };
 

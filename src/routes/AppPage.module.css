@@ -1,10 +1,14 @@
 .container {
-  background-color: var(--main-bg-color);
   width: 100%;
+  max-width: 1024px;
   min-height: 100vh;
+  padding: 0rem 5vw;
+  margin: 80px auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
+  font-weight: 700;
+  font-size: 2rem;
 }
