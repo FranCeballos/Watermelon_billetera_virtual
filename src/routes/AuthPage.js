@@ -1,7 +1,7 @@
 import AuthContainer from "../components/Auth/AuthContainer";
 
-const Root = () => {
+const AuthPage = () => {
   return <AuthContainer />;
 };
 
-export default Root;
+export default AuthPage;

@@ -1,24 +1,19 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import classes from "./Auth.module.css";
 import AnimatedLogo from "../UI/Logos/AnimatedLogo";
 import AuthSelector from "./AuthSelector";
-import Login from "./Login";
-import Signup from "./Signup";
+import AuthForm from "./AuthForm";
 
 const AuthContainer = () => {
-  const [view, setView] = useState({ name: "selector", speed: "slow" });
-
-  const content = {
-    selector: <AuthSelector onNavigation={(view) => setView(view)} />,
-    login: <Login onNavigation={(view) => setView(view)} />,
-    signup: <Signup onNavigation={(view) => setView(view)} />,
-  };
+  const [searchParams] = useSearchParams();
+  const isSignup = searchParams.get("mode") === "signup";
+  const isLogin = searchParams.get("mode") === "login";
 
   return (
     <motion.div
       initial="hidden"
-      animate={view.speed}
+      animate="animate"
       exit="exit"
       className={classes.container}
     >
@@ -36,7 +31,10 @@ const AuthContainer = () => {
         >
           <AnimatedLogo className={classes["logo"]} />
         </motion.div>
-        <AnimatePresence mode="wait">{content[view.name]}</AnimatePresence>
+        <AnimatePresence mode="wait">
+          {!isLogin && !isSignup && <AuthSelector />}
+          {(isLogin || isSignup) && <AuthForm isLogin={isLogin} />}
+        </AnimatePresence>
       </div>
     </motion.div>
   );

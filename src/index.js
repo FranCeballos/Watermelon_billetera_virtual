@@ -3,14 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Root from "./routes/root";
+import AuthPage from "./routes/AuthPage";
 import ErrorPage from "./routes/ErrorPage";
 import AppPage from "./routes/AppPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Root />,
+    path: "/auth",
+    element: <AuthPage />,
     errorElement: <ErrorPage />,
   },
   {
