@@ -1,3 +1,4 @@
+import ActivityContainer from "../components/Activity/ActivityContainer";
 import BalanceContainer from "../components/Balance/BalanceContainer";
 import DolarContainer from "../components/Dolar/DolarContainer";
 import Header from "../components/Layout/Header";
@@ -11,6 +12,7 @@ const AppPage = () => {
         <DolarContainer />
         <BalanceContainer />
         <MovementsContainer />
+        <ActivityContainer />
       </main>
     </>
   );
