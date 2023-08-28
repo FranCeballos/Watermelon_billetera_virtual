@@ -8,7 +8,8 @@ import ErrorPage from "./routes/ErrorPage";
 import AppPage from "./routes/AppPage";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import { checkAuthLoader } from "./util/checkAuthLoader";
+import { checkAuthLoader } from "./util/auth";
+import { action as logoutAction } from "./routes/Logout";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     element: <AppPage />,
     errorElement: <ErrorPage />,
     loader: checkAuthLoader,
+  },
+  {
+    path: "logout",
+    action: logoutAction,
   },
 ]);
 

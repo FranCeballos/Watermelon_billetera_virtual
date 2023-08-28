@@ -1,11 +1,33 @@
+import { useEffect } from "react";
 import ActivityContainer from "../components/Activity/ActivityContainer";
 import BalanceContainer from "../components/Balance/BalanceContainer";
 import DolarContainer from "../components/Dolar/DolarContainer";
 import Header from "../components/Layout/Header";
 import MovementsContainer from "../components/Movements/MovementsContainer";
+import { getAuthToken, getTokenDuration } from "../util/auth";
 import classes from "./AppPage.module.css";
+import { useSubmit } from "react-router-dom";
 
 const AppPage = () => {
+  const submit = useSubmit();
+  const token = getAuthToken();
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    if (token === "EXPIRED") {
+      submit(null, { action: "/logout", method: "post" });
+      return;
+    }
+
+    const tokenDuration = getTokenDuration();
+    setTimeout(() => {
+      submit(null, { action: "/logout", method: "post" });
+    }, tokenDuration);
+  }, [token, submit]);
+
   return (
     <>
       <Header />

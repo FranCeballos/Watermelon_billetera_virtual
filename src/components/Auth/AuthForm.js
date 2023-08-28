@@ -20,12 +20,16 @@ const AuthForm = ({ isLogin }) => {
   const [postLogin, loginResult] = usePostLoginMutation();
   const navigate = useNavigate();
 
-  console.log(loginResult);
-
   useEffect(() => {
     if (loginResult.isSuccess) {
       const user = loginResult.data.user;
       localStorage.setItem("token", user.token);
+
+      const expiration = new Date();
+      expiration.setHours(expiration.getHours() + 1);
+      localStorage.setItem("expiration", expiration.toISOString());
+
+      localStorage.setItem("userId", user._id);
       dispatch(setUser({ userId: user._id, email: user.email }));
       navigate("/app", { replace: "false" });
     }
