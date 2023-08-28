@@ -1,23 +1,80 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { setUser } from "../../store/reducers/userSlice";
 import { authVariant } from "./AuthVariants";
 import classes from "./Auth.module.css";
-import { Link } from "react-router-dom";
+import {
+  usePostSignupMutation,
+  usePostLoginMutation,
+} from "../../services/authService";
 
 const AuthForm = ({ isLogin }) => {
+  const dispatch = useDispatch();
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const passwordConfirmRef = useRef(null);
+  const [postSignup, signupResult] = usePostSignupMutation();
+  const [postLogin, loginResult] = usePostLoginMutation();
+  const navigate = useNavigate();
+
+  console.log(loginResult);
+
+  useEffect(() => {
+    if (loginResult.isSuccess) {
+      const user = loginResult.data.user;
+      dispatch(setUser(user));
+      navigate("/app", { replace: "false" });
+    }
+    if (signupResult.isSuccess)
+      navigate("/auth?mode=login", { replace: "false" });
+  }, [signupResult, loginResult, navigate, dispatch]);
+
+  const onSubmitHandler = async () => {
+    isLogin
+      ? postLogin({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        })
+      : postSignup({
+          name: nameRef.current.value,
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+          passwordConfirm: passwordConfirmRef.current.value,
+        });
+  };
+
   return (
-    <motion.form
+    <motion.div
       variants={authVariant}
       key="login"
       className={classes["auth-container"]}
     >
       {!isLogin && (
-        <input type="text" className={classes.input} placeholder="Full Name" />
+        <input
+          ref={nameRef}
+          type="text"
+          className={classes.input}
+          placeholder="Full Name"
+        />
       )}
-      <input type="email" className={classes.input} placeholder="Email" />
-      <input type="password" className={classes.input} placeholder="Password" />
+      <input
+        ref={emailRef}
+        type="email"
+        className={classes.input}
+        placeholder="Email"
+      />
+      <input
+        ref={passwordRef}
+        type="password"
+        className={classes.input}
+        placeholder="Password"
+      />
       {!isLogin && (
         <input
+          ref={passwordConfirmRef}
           type="password"
           className={classes.input}
           placeholder="Confirm Password"
@@ -31,14 +88,14 @@ const AuthForm = ({ isLogin }) => {
           {isLogin ? "Create account" : "Have an account?"}
         </Link>
         <button
-          type="submit"
-          onClick={() => {}}
+          type="button"
+          onClick={onSubmitHandler}
           className={classes["btn__secondary-outlined"]}
         >
           {isLogin ? "Log In" : "Sign Up"}
         </button>
       </div>
-    </motion.form>
+    </motion.div>
   );
 };
 

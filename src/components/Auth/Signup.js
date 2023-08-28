@@ -9,21 +9,10 @@ const Signup = ({ onNavigation }) => {
       variants={signinVariant}
       key="signup"
       className={classes["auth-container"]}
-      autoComplete="off"
     >
       <input type="text" className={classes.input} placeholder="Full Name" />
-      <input
-        type="email"
-        className={classes.input}
-        placeholder="Email"
-        autoComplete="off"
-      />
-      <input
-        type="password"
-        className={classes.input}
-        placeholder="Password"
-        autoComplete="off"
-      />
+      <input type="email" className={classes.input} placeholder="Email" />
+      <input type="password" className={classes.input} placeholder="Password" />
       <div className={classes["auth-buttons"]}>
         <button
           type="button"
