@@ -13,13 +13,33 @@
   z-index: 99;
 }
 
+.nav {
+  height: 80px;
+  max-width: 1024px;
+  padding: 0 5vw;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .header__image-box {
-  width: auto;
   height: 100%;
+  flex: 0 0 auto;
 }
 
 .header__image {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+.header__logout {
+  text-align: end;
+  flex: 1 1 0;
+}
+
+.header__left-empty {
+  flex: 1 1 0;
 }

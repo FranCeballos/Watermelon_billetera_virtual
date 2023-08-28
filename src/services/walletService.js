@@ -5,7 +5,7 @@ export const walletApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:8080/app/",
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().user.value.token;
+      const token = localStorage.getItem("token");
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
       }

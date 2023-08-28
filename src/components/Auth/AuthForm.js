@@ -25,7 +25,8 @@ const AuthForm = ({ isLogin }) => {
   useEffect(() => {
     if (loginResult.isSuccess) {
       const user = loginResult.data.user;
-      dispatch(setUser(user));
+      localStorage.setItem("token", user.token);
+      dispatch(setUser({ userId: user._id, email: user.email }));
       navigate("/app", { replace: "false" });
     }
     if (signupResult.isSuccess)
