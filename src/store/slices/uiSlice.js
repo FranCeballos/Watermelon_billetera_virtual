@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const uiSlice = createSlice({
   name: "ui",
   initialState: {
-    movementsView: null,
+    movementsView: "empty",
   },
   reducers: {
     showSend: (state) => {

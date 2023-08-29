@@ -1,14 +1,14 @@
 import React from "react";
 import classes from "./ActivityItem.module.css";
 
-const ActivityItem = (props) => {
+const ActivityItem = ({ title, date, amount }) => {
   return (
     <li className={classes.container}>
       <div className={classes.box}>
-        <p className={classes.title}>Deposit</p>
-        <p className={classes.date}>02/03/2023</p>
+        <p className={classes.title}>{title}</p>
+        <p className={classes.date}>{date}</p>
       </div>
-      <p className={classes.amount}>+ $23</p>
+      <p className={classes.amount}>${amount}</p>
     </li>
   );
 };

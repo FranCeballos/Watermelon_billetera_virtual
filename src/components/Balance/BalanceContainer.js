@@ -10,7 +10,7 @@ const BalanceContainer = (props) => {
       title="BALANCE"
       styles={{ backgroundColor: "rgba(0, 0, 0, 0.094)", marginBottom: 30 }}
     >
-      <p className={classes.amount}>${data?.balance || "..."}</p>
+      <p className={classes.amount}>${data?.balance || "0"}</p>
     </SectionWrapper>
   );
 };
