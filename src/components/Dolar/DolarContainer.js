@@ -12,8 +12,12 @@ const DolarContainer = (props) => {
     data?.oficial || initialValue;
   return (
     <section className={classes.container}>
-      <DolarItem buy={blueBuy} sell={blueSell} />
-      <DolarItem buy={oficialBuy} sell={oficialSell} />
+      <DolarItem title="Blue Dolar in $ARS" buy={blueBuy} sell={blueSell} />
+      <DolarItem
+        title="Oficial Dolar in $ARS"
+        buy={oficialBuy}
+        sell={oficialSell}
+      />
     </section>
   );
 };

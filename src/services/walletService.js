@@ -8,14 +8,27 @@ export const walletApi = createApi({
       const token = localStorage.getItem("token");
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
+        headers.set("Content-Type", "application/json");
       }
     },
   }),
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
   endpoints: (builder) => ({
     getBalanceAndMovements: builder.query({
-      query: (token, _id) => ({
-        url: `/data/main/${_id}/${token}`,
+      query: () => ({
+        url: `balance`,
+      }),
+    }),
+    postDeposit: builder.mutation({
+      query: ({ ...deposit }) => ({
+        url: "deposit",
+        method: "post",
+        body: deposit,
       }),
     }),
   }),
 });
+
+export const { useGetBalanceAndMovementsQuery, usePostDepositMutation } =
+  walletApi;

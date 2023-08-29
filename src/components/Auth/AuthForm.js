@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { setUser } from "../../store/reducers/userSlice";
 import { authVariant } from "./AuthVariants";
 import classes from "./Auth.module.css";
 import {
@@ -11,7 +9,6 @@ import {
 } from "../../services/authService";
 
 const AuthForm = ({ isLogin }) => {
-  const dispatch = useDispatch();
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -29,13 +26,11 @@ const AuthForm = ({ isLogin }) => {
       expiration.setHours(expiration.getHours() + 1);
       localStorage.setItem("expiration", expiration.toISOString());
 
-      localStorage.setItem("userId", user._id);
-      dispatch(setUser({ userId: user._id, email: user.email }));
       navigate("/app", { replace: "false" });
     }
     if (signupResult.isSuccess)
       navigate("/auth?mode=login", { replace: "false" });
-  }, [signupResult, loginResult, navigate, dispatch]);
+  }, [signupResult, loginResult, navigate]);
 
   const onSubmitHandler = async () => {
     isLogin

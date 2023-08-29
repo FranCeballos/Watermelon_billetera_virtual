@@ -1,12 +1,28 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { close } from "../../store/slices/uiSlice";
 import MovsWrapper from "../UI/Wrappers/MovsWrapper";
 import InputApp from "../UI/Forms/InputApp";
 import classes from "./Deposit.module.css";
 import ButtonNav from "../UI/Buttons/ButtonNav";
+import {
+  useGetBalanceAndMovementsQuery,
+  usePostDepositMutation,
+} from "../../services/walletService";
 
 const Deposit = (props) => {
+  const dispatch = useDispatch();
+  const { refetch } = useGetBalanceAndMovementsQuery();
   const [depositAmount, setDepositAmount] = useState();
-  console.log(depositAmount);
+  const [postDeposit] = usePostDepositMutation();
+
+  const depositHandler = async () => {
+    if (parseFloat(depositAmount) > 0) {
+      await postDeposit({ amount: parseFloat(depositAmount) });
+      refetch();
+      dispatch(close());
+    }
+  };
   return (
     <MovsWrapper>
       <div className={classes.content}>
@@ -20,7 +36,7 @@ const Deposit = (props) => {
           onChange={(value) => setDepositAmount(value)}
           value={depositAmount}
         />
-        <ButtonNav title="Confirm" />
+        <ButtonNav onClick={depositHandler} title="Confirm" />
       </div>
     </MovsWrapper>
   );
