@@ -10,11 +10,13 @@ const ActivityList = (props) => {
       {data?.movements
         ? data.movements.map((mov) => {
             const date = new Date(mov.date);
-            console.log(date.getFullYear());
+            const description = mov.description;
             return (
               <ActivityItem
                 key={mov.date}
-                title={`${mov.description} from ${mov.sender}`}
+                title={`${description} ${description === "Sent" ? "to" : ""}${
+                  description === "Deposit" ? "from" : ""
+                } ${mov.sender}`}
                 date={`${date.getDate()}/${
                   date.getMonth() + 1
                 }/${date.getFullYear()}`}

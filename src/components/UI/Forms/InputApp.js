@@ -26,6 +26,7 @@ const InputApp = ({
         max={max}
         min={min}
         placeholder={title}
+        onWheel={(e) => e.target.blur()}
       />
       <p className={classes.error}>{error}</p>
     </div>

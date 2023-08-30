@@ -27,8 +27,18 @@ export const walletApi = createApi({
         body: deposit,
       }),
     }),
+    postSend: builder.mutation({
+      query: ({ ...send }) => ({
+        url: "send",
+        method: "post",
+        body: send,
+      }),
+    }),
   }),
 });
 
-export const { useGetBalanceAndMovementsQuery, usePostDepositMutation } =
-  walletApi;
+export const {
+  useGetBalanceAndMovementsQuery,
+  usePostDepositMutation,
+  usePostSendMutation,
+} = walletApi;

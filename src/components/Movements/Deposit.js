@@ -28,7 +28,7 @@ const Deposit = (props) => {
       <div className={classes.content}>
         <p>Deposit</p>
         <InputApp
-          title="Amount"
+          title="$ Amount"
           error=""
           type="number"
           min={1}

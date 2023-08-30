@@ -4,11 +4,13 @@ import classes from "./Auth.module.css";
 import AnimatedLogo from "../UI/Logos/AnimatedLogo";
 import AuthSelector from "./AuthSelector";
 import AuthForm from "./AuthForm";
+import AuthSuccess from "./AuthSuccess";
 
 const AuthContainer = () => {
   const [searchParams] = useSearchParams();
   const isSignup = searchParams.get("mode") === "signup";
   const isLogin = searchParams.get("mode") === "login";
+  const isSuccess = searchParams.get("mode") === "success";
 
   return (
     <motion.div
@@ -32,8 +34,9 @@ const AuthContainer = () => {
           <AnimatedLogo className={classes["logo"]} />
         </motion.div>
         <AnimatePresence mode="wait">
-          {!isLogin && !isSignup && <AuthSelector />}
+          {!isLogin && !isSignup && !isSuccess && <AuthSelector />}
           {(isLogin || isSignup) && <AuthForm isLogin={isLogin} />}
+          {isSuccess && <AuthSuccess />}
         </AnimatePresence>
       </div>
     </motion.div>

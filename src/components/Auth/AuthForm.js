@@ -25,11 +25,10 @@ const AuthForm = ({ isLogin }) => {
       const expiration = new Date();
       expiration.setHours(expiration.getHours() + 1);
       localStorage.setItem("expiration", expiration.toISOString());
-
       navigate("/app", { replace: "false" });
     }
     if (signupResult.isSuccess)
-      navigate("/auth?mode=login", { replace: "false" });
+      navigate("/auth?mode=success", { replace: "false" });
   }, [signupResult, loginResult, navigate]);
 
   const onSubmitHandler = async () => {
