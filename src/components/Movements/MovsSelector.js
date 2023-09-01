@@ -2,12 +2,16 @@ import React from "react";
 import classes from "./MovsSelector.module.css";
 import ButtonNav from "../UI/Buttons/ButtonNav";
 import { useSelector, useDispatch } from "react-redux";
-import { showDeposit, showSend, close } from "../../store/slices/uiSlice";
+import {
+  showDeposit,
+  showSend,
+  close,
+} from "../../store/slices/movementsSlice";
 import { motion } from "framer-motion";
 
 const MovsSelector = () => {
   const dispatch = useDispatch();
-  const view = useSelector((state) => state.ui.movementsView);
+  const view = useSelector((state) => state.movements.movementsView);
 
   return (
     <div className={classes.container}>

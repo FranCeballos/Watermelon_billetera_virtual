@@ -5,7 +5,7 @@ import Deposit from "./Deposit";
 import { useSelector } from "react-redux";
 
 const MovementsContainer = (props) => {
-  const view = useSelector((state) => state.ui.movementsView);
+  const view = useSelector((state) => state.movements.movementsView);
   const movsContent = {
     empty: null,
     send: <Send />,

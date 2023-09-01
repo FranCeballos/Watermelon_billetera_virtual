@@ -1,32 +1,19 @@
 import { useState } from "react";
-import classes from "./InputApp.module.css";
+import classes from "./InputAuth.module.css";
 
-const InputApp = ({
-  placeholder,
-  onChange,
-  type = "text",
-  error = "",
-  max = 1000000,
-  min = 0,
-}) => {
+const InputAuth = ({ placeholder, inputRef, type = "text", error = "" }) => {
   const [value, setValue] = useState("");
-
-  const onChangeHandler = (newValue) => {
-    setValue(newValue);
-    onChange(newValue);
-  };
 
   return (
     <div className={classes.container}>
       <input
+        ref={inputRef}
         className={`${classes.input} ${
           error ? classes["input__error-border"] : ""
         }`}
         type={type}
-        onChange={(value) => onChangeHandler(value.target.value)}
+        onChange={(value) => setValue(value.target.value)}
         value={value}
-        max={max}
-        min={min}
         placeholder={placeholder}
         onWheel={(e) => e.target.blur()}
       />
@@ -35,4 +22,4 @@ const InputApp = ({
   );
 };
 
-export default InputApp;
+export default InputAuth;

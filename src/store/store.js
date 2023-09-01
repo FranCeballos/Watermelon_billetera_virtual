@@ -3,11 +3,13 @@ import { authApi } from "../services/authService";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { dolarApi } from "../services/dolarService";
 import { walletApi } from "../services/walletService";
-import uiReducer from "./slices/uiSlice";
+import movementsReducer from "./slices/movementsSlice";
+import authReducer from "./slices/authSlice";
 
 export const store = configureStore({
   reducer: {
-    ui: uiReducer,
+    auth: authReducer,
+    movements: movementsReducer,
     [authApi.reducerPath]: authApi.reducer,
     [dolarApi.reducerPath]: dolarApi.reducer,
     [walletApi.reducerPath]: walletApi.reducer,

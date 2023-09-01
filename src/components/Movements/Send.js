@@ -8,46 +8,48 @@ import {
   usePostSendMutation,
 } from "../../services/walletService";
 import { useDispatch } from "react-redux";
-import { close } from "../../store/slices/uiSlice";
+import { close } from "../../store/slices/movementsSlice";
 
 const Send = (props) => {
-  const { refetch } = useGetBalanceAndMovementsQuery();
   const dispatch = useDispatch();
+  const { refetch } = useGetBalanceAndMovementsQuery();
   const [searchValue, setSearchValue] = useState(null);
-  const [sendAmount, setSendAmount] = useState(0);
-  const [postSend] = usePostSendMutation();
+  const [sendAmount, setSendAmount] = useState(null);
+  const [postSend, sendResult] = usePostSendMutation();
 
   const sendHandler = async () => {
-    if (parseFloat(sendAmount) > 0) {
-      const result = await postSend({ email: searchValue, amount: sendAmount });
-      if (!result.error) {
-        refetch();
-        dispatch(close());
-      }
+    const result = await postSend({ email: searchValue, amount: sendAmount });
+    if (!result.error) {
+      refetch();
+      dispatch(close());
     }
   };
+
   return (
     <MovsWrapper>
       <div className={classes.content}>
-        <p>Send</p>
-        <div className={classes["contact-selector"]}>
-          <InputApp
-            title="@ Email of receiver"
-            type="text"
-            value={searchValue}
-            onChange={(value) => setSearchValue(value)}
-          />
-        </div>
+        <p className={classes.title}>Send</p>
         <InputApp
-          title="$ Amount"
-          error=""
+          placeholder="@ Email of receiver"
+          type="text"
+          value={searchValue}
+          onChange={(value) => setSearchValue(value)}
+          error={sendResult.error ? sendResult.error.data.email : null}
+        />
+        <InputApp
+          placeholder="$ Amount"
           type="number"
           min={1}
           max={1000000}
           onChange={(value) => setSendAmount(value)}
           value={sendAmount}
+          error={sendResult.error ? sendResult.error.data.amount : null}
         />
-        <ButtonNav title="Confirm" onClick={sendHandler} />
+        {sendResult.isLoading ? (
+          <ButtonNav title="Loading..." />
+        ) : (
+          <ButtonNav title="Confirm" onClick={sendHandler} />
+        )}
       </div>
     </MovsWrapper>
   );

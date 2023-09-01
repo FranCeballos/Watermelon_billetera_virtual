@@ -6,9 +6,15 @@ import classes from "./Auth.module.css";
 import {
   usePostSignupMutation,
   usePostLoginMutation,
+  authApi,
 } from "../../services/authService";
+import InputAuth from "../UI/Forms/InputAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { setErrors } from "../../store/slices/authSlice";
 
 const AuthForm = ({ isLogin }) => {
+  const dispatch = useDispatch();
+  const errors = useSelector((state) => state.auth.errors);
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -27,9 +33,24 @@ const AuthForm = ({ isLogin }) => {
       localStorage.setItem("expiration", expiration.toISOString());
       navigate("/app", { replace: "false" });
     }
-    if (signupResult.isSuccess)
+    if (signupResult.isSuccess) {
       navigate("/auth?mode=success", { replace: "false" });
-  }, [signupResult, loginResult, navigate]);
+    }
+    if (signupResult.isSuccess || loginResult.isSuccess) {
+      dispatch(setErrors({}));
+    }
+    if (signupResult.isError || loginResult.isError) {
+      if (signupResult.isError) {
+        console.log("isError Signup");
+      }
+      if (loginResult.isError) {
+        console.log("isError Signup");
+      }
+      dispatch(
+        setErrors(isLogin ? loginResult.error?.data : signupResult.error?.data)
+      );
+    }
+  }, [signupResult, loginResult, navigate, dispatch, isLogin]);
 
   const onSubmitHandler = async () => {
     isLogin
@@ -51,48 +72,69 @@ const AuthForm = ({ isLogin }) => {
       key="login"
       className={classes["auth-container"]}
     >
+      <h1 className={classes.title}>
+        {isLogin ? "Welcome" : "Create account"}
+      </h1>
       {!isLogin && (
-        <input
-          ref={nameRef}
+        <InputAuth
+          inputRef={nameRef}
           type="text"
-          className={classes.input}
           placeholder="Full Name"
+          error={errors.name}
         />
       )}
-      <input
-        ref={emailRef}
+      <InputAuth
+        inputRef={emailRef}
         type="email"
-        className={classes.input}
         placeholder="Email"
+        error={errors.email}
       />
-      <input
-        ref={passwordRef}
+      <InputAuth
+        inputRef={passwordRef}
         type="password"
-        className={classes.input}
         placeholder="Password"
+        error={errors.password}
       />
       {!isLogin && (
-        <input
-          ref={passwordConfirmRef}
+        <InputAuth
+          inputRef={passwordConfirmRef}
           type="password"
-          className={classes.input}
           placeholder="Confirm Password"
+          error={errors.passwordConfirm}
         />
       )}
       <div className={classes["auth-buttons"]}>
-        <Link
-          to={`?mode=${isLogin ? "signup" : "login"}`}
-          className={classes["btn__secondary"]}
-        >
-          {isLogin ? "Create account" : "Have an account?"}
-        </Link>
-        <button
-          type="button"
-          onClick={onSubmitHandler}
-          className={classes["btn__secondary-outlined"]}
-        >
-          {isLogin ? "Log In" : "Sign Up"}
-        </button>
+        {loginResult.isLoading || signupResult.isLoading ? (
+          <>
+            <div></div>
+            <button
+              type="button"
+              className={classes["btn__secondary-outlined"]}
+            >
+              Loading...
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to={`?mode=${isLogin ? "signup" : "login"}`}
+              className={classes["btn__secondary"]}
+              onClick={() => {
+                dispatch(setErrors({}));
+                dispatch(authApi.util.resetApiState());
+              }}
+            >
+              {isLogin ? "Create account" : "Have an account?"}
+            </Link>
+            <button
+              type="button"
+              onClick={onSubmitHandler}
+              className={classes["btn__secondary-outlined"]}
+            >
+              {isLogin ? "Log In" : "Sign Up"}
+            </button>
+          </>
+        )}
       </div>
     </motion.div>
   );

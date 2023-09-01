@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const uiSlice = createSlice({
-  name: "ui",
+const movementsSlice = createSlice({
+  name: "movements",
   initialState: {
     movementsView: "empty",
   },
@@ -18,6 +18,5 @@ const uiSlice = createSlice({
   },
 });
 
-export const { showSend, showDeposit, close } = uiSlice.actions;
-
-export default uiSlice.reducer;
+export const { showSend, showDeposit, close } = movementsSlice.actions;
+export default movementsSlice.reducer;

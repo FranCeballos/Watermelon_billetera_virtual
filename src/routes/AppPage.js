@@ -7,8 +7,10 @@ import MovementsContainer from "../components/Movements/MovementsContainer";
 import { getAuthToken, getTokenDuration } from "../util/auth";
 import classes from "./AppPage.module.css";
 import { useSubmit } from "react-router-dom";
+import { useGetBalanceAndMovementsQuery } from "../services/walletService";
 
 const AppPage = () => {
+  const { refetch } = useGetBalanceAndMovementsQuery();
   const submit = useSubmit();
   const token = getAuthToken();
 
@@ -22,11 +24,13 @@ const AppPage = () => {
       return;
     }
 
+    refetch();
+
     const tokenDuration = getTokenDuration();
     setTimeout(() => {
       submit(null, { action: "/logout", method: "post" });
     }, tokenDuration);
-  }, [token, submit]);
+  }, [token, submit, refetch]);
 
   return (
     <>

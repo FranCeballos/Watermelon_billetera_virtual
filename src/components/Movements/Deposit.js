@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { close } from "../../store/slices/uiSlice";
+import { close } from "../../store/slices/movementsSlice";
 import MovsWrapper from "../UI/Wrappers/MovsWrapper";
 import InputApp from "../UI/Forms/InputApp";
 import classes from "./Deposit.module.css";
@@ -13,30 +13,38 @@ import {
 const Deposit = (props) => {
   const dispatch = useDispatch();
   const { refetch } = useGetBalanceAndMovementsQuery();
-  const [depositAmount, setDepositAmount] = useState();
-  const [postDeposit] = usePostDepositMutation();
+  const [depositAmount, setDepositAmount] = useState(null);
+  const [postDeposit, depositResponse] = usePostDepositMutation();
 
-  const depositHandler = async () => {
-    if (parseFloat(depositAmount) > 0) {
-      await postDeposit({ amount: parseFloat(depositAmount) });
-      refetch();
-      dispatch(close());
-    }
+  if (depositResponse.isSuccess) {
+    refetch();
+    dispatch(close());
+  }
+
+  const depositHandler = () => {
+    postDeposit({ amount: parseFloat(depositAmount) });
   };
+
   return (
     <MovsWrapper>
       <div className={classes.content}>
         <p>Deposit</p>
         <InputApp
-          title="$ Amount"
-          error=""
+          placeholder="$ Amount"
           type="number"
           min={1}
           max={1000000}
           onChange={(value) => setDepositAmount(value)}
           value={depositAmount}
+          error={
+            depositResponse.isError ? depositResponse.error.data.amount : null
+          }
         />
-        <ButtonNav onClick={depositHandler} title="Confirm" />
+        {depositResponse.isLoading ? (
+          <ButtonNav title="Loading..." />
+        ) : (
+          <ButtonNav onClick={depositHandler} title="Confirm" />
+        )}
       </div>
     </MovsWrapper>
   );

@@ -2,8 +2,11 @@ import React from "react";
 import ButtonAuthConfirm from "../UI/Buttons/ButtonAuthConfirm";
 import classes from "./Header.module.css";
 import { Form } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { close } from "../../store/slices/movementsSlice";
 
 const Header = (props) => {
+  const dispatch = useDispatch();
   return (
     <header className={classes.container}>
       <div className={classes.nav}>
@@ -17,7 +20,10 @@ const Header = (props) => {
         </div>
         <div className={classes["header__logout"]}>
           <Form action="/logout" method="post">
-            <ButtonAuthConfirm title="LOGOUT" />
+            <ButtonAuthConfirm
+              title="LOGOUT"
+              onClick={() => dispatch(close())}
+            />
           </Form>
         </div>
       </div>
