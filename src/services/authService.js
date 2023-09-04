@@ -2,18 +2,20 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8080/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://watermelon-backend.onrender.com/auth/",
+  }),
   endpoints: (builder) => ({
     postSignup: builder.mutation({
       query: ({ ...auth }) => ({
-        url: `auth/signup`,
+        url: `signup`,
         method: "POST",
         body: auth,
       }),
     }),
     postLogin: builder.mutation({
       query: ({ ...auth }) => ({
-        url: `auth/login`,
+        url: `login`,
         method: "POST",
         body: auth,
       }),

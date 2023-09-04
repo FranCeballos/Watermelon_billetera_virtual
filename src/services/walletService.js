@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const walletApi = createApi({
   reducerPath: "walletApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8080/app/",
+    baseUrl: "https://watermelon-backend.onrender.com/app/",
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem("token");
       if (token) {
