@@ -1,11 +1,11 @@
 import React from "react";
 import ButtonAuthConfirm from "../UI/Buttons/ButtonAuthConfirm";
-import classes from "./Header.module.css";
+import classes from "./HeaderUI.module.css";
 import { Form } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { close } from "../../store/slices/movementsSlice";
 
-const Header = (props) => {
+const HeaderUI = (props) => {
   const dispatch = useDispatch();
   return (
     <header className={classes.container}>
@@ -31,4 +31,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default HeaderUI;

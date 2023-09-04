@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import ActivityContainer from "../components/Activity/ActivityContainer";
 import BalanceContainer from "../components/Balance/BalanceContainer";
 import DolarContainer from "../components/Dolar/DolarContainer";
-import Header from "../components/Layout/Header";
+import HeaderUI from "../components/Layout/HeaderUI";
 import MovementsContainer from "../components/Movements/MovementsContainer";
 import { getAuthToken, getTokenDuration } from "../util/auth";
 import classes from "./AppPage.module.css";
@@ -34,7 +34,7 @@ const AppPage = () => {
 
   return (
     <>
-      <Header />
+      <HeaderUI />
       <main className={classes.container}>
         <DolarContainer />
         <BalanceContainer />
