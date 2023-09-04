@@ -1,0 +1,19 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  width: 250px;
+  height: 100px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+}

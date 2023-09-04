@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from "react-router-dom";
 import AuthPage from "./routes/AuthPage";
 import ErrorPage from "./routes/ErrorPage";
 import AppPage from "./routes/AppPage";
@@ -11,6 +15,7 @@ import { checkAuthLoader } from "./util/auth";
 import { action as logoutAction } from "./routes/Logout";
 
 const router = createBrowserRouter([
+  { path: "/", loader: () => redirect("/auth"), errorElement: <ErrorPage /> },
   {
     path: "/auth",
     element: <AuthPage />,
@@ -25,6 +30,7 @@ const router = createBrowserRouter([
   {
     path: "logout",
     action: logoutAction,
+    errorElement: <ErrorPage />,
   },
 ]);
 
