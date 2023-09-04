@@ -1,22 +1,30 @@
 {
-  "name": "billetera_virtual",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "sass ./scss/style.scss ./css/style.css -w --no-source-map -s compressed"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FranCeballos/billetera_virtual.git"
-  },
-  "author": "Francisco Ceballos",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FranCeballos/billetera_virtual/issues"
-  },
-  "homepage": "https://github.com/FranCeballos/billetera_virtual#readme",
+  "name": "watermelon-virtual-wallet",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "sass": "^1.63.6"
+    "@reduxjs/toolkit": "^1.9.5",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "framer-motion": "^10.15.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
+    "react-router-dom": "^6.14.2",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   }
 }

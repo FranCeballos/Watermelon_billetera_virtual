@@ -1,0 +1,10 @@
+.amount {
+  font-size: 5vw;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 425px) {
+  .amount {
+    font-size: 10vw;
+  }
+}

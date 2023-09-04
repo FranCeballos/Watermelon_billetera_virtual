@@ -1,0 +1,12 @@
+.button {
+  background-color: rgba(0, 0, 0, 0.262);
+  backdrop-filter: blur(14px);
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s all ease-out;
+}

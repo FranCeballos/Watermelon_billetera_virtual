@@ -1,0 +1,14 @@
+.wrapper {
+  padding: 2rem 2.5rem;
+  border-radius: 2rem;
+  width: 100%;
+}
+.section__sub {
+  padding: 2rem;
+  border-radius: 2rem;
+  width: 100%;
+}
+.title {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}

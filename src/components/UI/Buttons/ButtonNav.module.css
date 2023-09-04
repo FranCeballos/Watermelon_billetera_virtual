@@ -1,0 +1,33 @@
+.button {
+  font-family: "Montserrat", sans-serif;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  border-radius: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background-color: var(--color-blue-1);
+  color: var(--color-grey-1);
+  cursor: pointer;
+}
+
+.button-active {
+  font-family: "Montserrat", sans-serif;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  border-radius: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background-color: var(--color-pink-1);
+  color: var(--color-grey-1);
+  cursor: pointer;
+}

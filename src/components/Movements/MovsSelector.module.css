@@ -1,0 +1,23 @@
+.container {
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.button-cancel {
+  display: flex;
+  border: 0px;
+  border-radius: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background-color: var(--color-grey-2);
+  color: var(--color-grey-1);
+  cursor: pointer;
+}

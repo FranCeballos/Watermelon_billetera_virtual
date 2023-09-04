@@ -1,0 +1,10 @@
+.dolar__text {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 0;
+}
+.dolar__text-alt {
+  color: var(--color-blue-1);
+}

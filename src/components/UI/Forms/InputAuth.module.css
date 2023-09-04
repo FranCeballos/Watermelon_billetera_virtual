@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.input {
+  width: 100%;
+  border: 0;
+  border-radius: 1rem;
+  background-color: rgba(56, 56, 56, 0.27);
+  color: #ffffff;
+  padding: 1rem 1rem;
+  font-size: 1.6rem;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.577);
+}
+
+.input__error-border {
+  border: 1px solid rgb(242, 40, 80);
+}
+
+.error {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
