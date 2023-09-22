@@ -69,6 +69,9 @@ const AuthForm = ({ isLogin }) => {
   return (
     <motion.div
       variants={authVariant}
+      initial="hidden"
+      animate="animate"
+      exit="exit"
       key="login"
       className={classes["auth-container"]}
     >

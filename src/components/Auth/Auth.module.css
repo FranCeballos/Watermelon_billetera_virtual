@@ -22,12 +22,14 @@
   font-size: 2.5rem;
 }
 
-.content {
+.content__container {
   width: 100%;
   max-width: 350px;
+  height: 450px;
+  padding: 10px 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
 }
@@ -46,6 +48,7 @@
   width: 100%;
   height: auto;
   aspect-ratio: 19 / 6;
+  transition: 1s all ease-out;
 }
 
 .logo {
@@ -155,12 +158,24 @@
   line-height: 2.5rem;
 }
 
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.loader__text {
+  font-weight: 600;
+}
+
 @media screen and (max-width: 425px) {
   .container {
     background-image: none;
     background-color: #222831;
   }
-  .logo-box {
-    padding: 40px;
+  .content {
+    gap: 0px;
   }
 }

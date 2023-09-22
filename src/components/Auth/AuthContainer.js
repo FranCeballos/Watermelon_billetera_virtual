@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import classes from "./Auth.module.css";
@@ -6,11 +7,29 @@ import AuthSelector from "./AuthSelector";
 import AuthForm from "./AuthForm";
 import AuthSuccess from "./AuthSuccess";
 
+import LoadingIcon from "./LoadingIcon";
+import { loaderVariant } from "./AuthVariants";
+import { useLazyGetWakeupQuery } from "../../services/authService";
+
 const AuthContainer = () => {
+  const [trigger, result] = useLazyGetWakeupQuery();
+  const [isAwake, setIsAwake] = useState(false);
   const [searchParams] = useSearchParams();
   const isSignup = searchParams.get("mode") === "signup";
   const isLogin = searchParams.get("mode") === "login";
   const isSuccess = searchParams.get("mode") === "success";
+  const { isLoading, isSuccess: isSuccessResult } = result;
+
+  useEffect(() => {
+    if (!isAwake) {
+      trigger();
+    }
+    if (isSuccessResult) {
+      setIsAwake(true);
+    }
+  }, [trigger, isSuccessResult, isAwake]);
+
+  console.log(result);
 
   return (
     <motion.div
@@ -19,7 +38,7 @@ const AuthContainer = () => {
       exit="exit"
       className={classes.container}
     >
-      <div className={classes.content}>
+      <div className={classes["content__container"]}>
         <motion.div
           initial={{ scale: 1.3 }}
           animate={{ scale: 1 }}
@@ -34,9 +53,27 @@ const AuthContainer = () => {
           <AnimatedLogo className={classes["logo"]} />
         </motion.div>
         <AnimatePresence mode="wait">
-          {!isLogin && !isSignup && !isSuccess && <AuthSelector />}
-          {(isLogin || isSignup) && <AuthForm isLogin={isLogin} />}
-          {isSuccess && <AuthSuccess />}
+          {isLoading && (
+            <motion.div
+              key="loader"
+              className={classes.loader}
+              variants={loaderVariant}
+              initial="hidden"
+              animate="animate"
+              exit="exit"
+            >
+              <p className={classes["loader__text"]}>Waking up server...</p>
+              <LoadingIcon />
+            </motion.div>
+          )}
+
+          {!isLogin && !isSignup && !isSuccess && !isLoading && isAwake && (
+            <AuthSelector />
+          )}
+          {(isLogin || isSignup) && !isLoading && isAwake && (
+            <AuthForm isLogin={isLogin} />
+          )}
+          {isSuccess && !isLoading && isAwake && <AuthSuccess />}
         </AnimatePresence>
       </div>
     </motion.div>

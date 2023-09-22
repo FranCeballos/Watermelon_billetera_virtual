@@ -4,10 +4,13 @@ import { buttonsVariant } from "./AuthVariants";
 import classes from "./Auth.module.css";
 import { Link } from "react-router-dom";
 
-const AuthSelector = ({ onNavigation }) => {
+const AuthSelector = () => {
   return (
     <motion.div
       variants={buttonsVariant}
+      initial="hidden"
+      animate="animate"
+      exit="exit"
       key="buttons"
       className={classes["options-container"]}
     >

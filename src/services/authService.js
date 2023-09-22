@@ -20,7 +20,16 @@ export const authApi = createApi({
         body: auth,
       }),
     }),
+    getWakeup: builder.query({
+      query: () => ({
+        url: "wakeup",
+      }),
+    }),
   }),
 });
 
-export const { usePostSignupMutation, usePostLoginMutation } = authApi;
+export const {
+  usePostSignupMutation,
+  usePostLoginMutation,
+  useLazyGetWakeupQuery,
+} = authApi;

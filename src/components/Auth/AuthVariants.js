@@ -8,7 +8,7 @@ export const buttonsVariant = {
   },
   exit: {
     opacity: 0,
-    transition: { duration: 5, type: "spring" },
+    transition: { opacity: { duration: 5, type: "spring" } },
   },
 };
 
@@ -19,6 +19,29 @@ export const authVariant = {
   animate: { opacity: 1, transition: { duration: 2, type: "spring" } },
   exit: {
     opacity: 0,
-    transition: { duration: 5, type: "spring" },
+    transition: { opacity: { duration: 5, type: "spring" } },
+  },
+};
+
+export const loaderVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      opacity: {
+        duration: 1,
+        delay: 3,
+      },
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      opacity: {
+        duration: 1,
+      },
+    },
   },
 };
