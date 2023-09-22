@@ -1,0 +1,74 @@
+.container {
+  height: 150px;
+  width: 100%;
+  max-width: 1024px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 5vw;
+}
+
+.left {
+  flex: 1 1 0;
+}
+.text {
+  font-size: 1.3rem;
+}
+
+.center {
+  width: fit-content;
+  height: 70px;
+  flex: 1 1 0;
+}
+
+.logo__watermelon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.right {
+  height: 30px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.logo__container-github {
+  height: 100%;
+}
+
+.logo__github {
+  width: fit-content;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    height: 30vh;
+    flex-direction: column;
+    padding-bottom: 30px;
+  }
+  .left {
+    display: grid;
+    place-content: center;
+    order: 2;
+  }
+  .center {
+    order: 1;
+    height: 30px;
+  }
+  .right {
+    display: grid;
+    place-content: center;
+    height: 20px;
+    order: 3;
+  }
+  .logo__container-github {
+    height: 30px;
+  }
+}

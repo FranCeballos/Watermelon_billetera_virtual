@@ -8,6 +8,7 @@ import { getAuthToken, getTokenDuration } from "../util/auth";
 import classes from "./AppPage.module.css";
 import { useSubmit } from "react-router-dom";
 import { useGetBalanceAndMovementsQuery } from "../services/walletService";
+import FooterApp from "../components/Footer/FooterApp";
 
 const AppPage = () => {
   const { refetch } = useGetBalanceAndMovementsQuery();
@@ -41,6 +42,7 @@ const AppPage = () => {
         <MovementsContainer />
         <ActivityContainer />
       </main>
+      <FooterApp />
     </>
   );
 };
