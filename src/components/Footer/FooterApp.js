@@ -1,18 +1,27 @@
 import React from "react";
+import { motion } from "framer-motion";
 import classes from "./FooterApp.module.css";
 
-const FooterApp = (props) => {
+const FooterApp = ({ style = {}, showLogo = true }) => {
   return (
-    <footer className={classes.container}>
+    <motion.footer
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 2, duration: 1 }}
+      style={style}
+      className={classes.container}
+    >
       <div className={classes.left}>
         <p className={classes.text}>Developed by Francisco Ceballos</p>
       </div>
       <div className={classes.center}>
-        <img
-          className={classes["logo__watermelon"]}
-          src="/assets/watermelon-clear.png"
-          alt="Watermelon App Logo"
-        />
+        {showLogo && (
+          <img
+            className={classes["logo__watermelon"]}
+            src="/assets/watermelon-clear.png"
+            alt="Watermelon App Logo"
+          />
+        )}
       </div>
       <div className={classes.right}>
         <a
@@ -28,7 +37,7 @@ const FooterApp = (props) => {
           />
         </a>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

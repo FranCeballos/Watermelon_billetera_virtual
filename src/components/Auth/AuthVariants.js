@@ -4,7 +4,7 @@ export const buttonsVariant = {
   },
   animate: {
     opacity: 1,
-    transition: { delay: 4.5, duration: 1, type: "spring" },
+    transition: { delay: 0.5, duration: 2, type: "spring" },
   },
   exit: {
     opacity: 0,
