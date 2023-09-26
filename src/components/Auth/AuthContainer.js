@@ -30,8 +30,6 @@ const AuthContainer = () => {
     }
   }, [trigger, isSuccessResult, isAwake]);
 
-  console.log(result);
-
   return (
     <motion.div
       initial="hidden"
@@ -77,10 +75,7 @@ const AuthContainer = () => {
           {isSuccess && !isLoading && isAwake && <AuthSuccess />}
         </AnimatePresence>
       </div>
-      <FooterApp
-        style={{ position: "absolute", bottom: "0" }}
-        showLogo={false}
-      />
+      <FooterApp style={{ height: "fit-content" }} showLogo={false} />
     </motion.div>
   );
 };

@@ -8,6 +8,9 @@
   justify-content: center;
   align-items: center;
   padding: 20px 5vw;
+  overflow-x: hidden;
+  position: absolute;
+  bottom: 0;
 }
 
 .left {
@@ -51,7 +54,9 @@
   .container {
     height: 30vh;
     flex-direction: column;
+    padding-top: 0;
     padding-bottom: 30px;
+    gap: 20px;
   }
   .left {
     display: grid;
