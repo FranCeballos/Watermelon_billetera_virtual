@@ -10,7 +10,7 @@ import AuthSuccess from "./AuthSuccess";
 import LoadingIcon from "./LoadingIcon";
 import { loaderVariant } from "./AuthVariants";
 import { useLazyGetWakeupQuery } from "../../services/authService";
-import FooterApp from "../Footer/FooterApp";
+import FooterAuth from "../Footer/FooterAuth";
 
 const AuthContainer = () => {
   const [trigger, result] = useLazyGetWakeupQuery();
@@ -75,7 +75,7 @@ const AuthContainer = () => {
           {isSuccess && !isLoading && isAwake && <AuthSuccess />}
         </AnimatePresence>
       </div>
-      <FooterApp style={{ height: "fit-content" }} showLogo={false} />
+      <FooterAuth style={{ height: "fit-content" }} showLogo={false} />
     </motion.div>
   );
 };

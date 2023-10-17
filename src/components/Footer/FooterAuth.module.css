@@ -1,5 +1,5 @@
 .container {
-  height: 250px;
+  height: 150px;
   width: 100%;
   max-width: 1024px;
   margin: 0 auto;
@@ -9,7 +9,8 @@
   align-items: center;
   padding: 20px 5vw;
   overflow-x: hidden;
-  position: relative;
+  position: absolute;
+  bottom: 0;
 }
 
 .left {
@@ -51,7 +52,7 @@
 
 @media screen and (max-width: 425px) {
   .container {
-    height: 450px;
+    height: 30vh;
     flex-direction: column;
     padding-top: 0;
     padding-bottom: 30px;
@@ -61,22 +62,18 @@
     display: grid;
     place-content: center;
     order: 2;
-    flex: 0 1 0;
   }
   .center {
     order: 1;
-    height: 70px;
-    flex: 0 1 0;
+    height: 30px;
   }
   .right {
     display: grid;
     place-content: center;
     height: 20px;
     order: 3;
-    flex: 0 1 0;
   }
   .logo__container-github {
     height: 30px;
-    flex: 0 1 0;
   }
 }
