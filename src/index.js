@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { checkAuthLoader } from "./util/auth";
 import { action as logoutAction } from "./routes/Logout";
+import { Analytics } from "@vercel/analytics";
 
 const router = createBrowserRouter([
   { path: "/", loader: () => redirect("/auth"), errorElement: <ErrorPage /> },
@@ -39,6 +40,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <Analytics />
     </Provider>
   </React.StrictMode>
 );
